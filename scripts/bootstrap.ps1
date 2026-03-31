@@ -105,6 +105,41 @@ function Resolve-CommandPath {
     return $null
 }
 
+function Invoke-SelfFromTempScriptIfNeeded {
+    param([string[]]$SetupArgs)
+
+    if (-not [string]::IsNullOrWhiteSpace($PSCommandPath)) {
+        return
+    }
+
+    $scriptBlock = $MyInvocation.MyCommand.ScriptBlock
+    if ($null -eq $scriptBlock) {
+        return
+    }
+
+    $scriptText = $scriptBlock.ToString()
+    if ([string]::IsNullOrWhiteSpace($scriptText)) {
+        return
+    }
+
+    $tempScriptPath = Join-Path ([IO.Path]::GetTempPath()) ("git-sweaty-bootstrap-" + [Guid]::NewGuid().ToString("N") + ".ps1")
+    $powershellPath = Resolve-CommandPath @("pwsh", "pwsh.exe", "powershell", "powershell.exe")
+    if (-not $powershellPath) {
+        Fail "PowerShell executable not found. Save this script to a .ps1 file and run it again."
+    }
+
+    try {
+        Set-Content -Path $tempScriptPath -Value $scriptText -Encoding UTF8
+        & $powershellPath -NoProfile -ExecutionPolicy Bypass -File $tempScriptPath @SetupArgs
+        if ($null -ne $LASTEXITCODE) {
+            return [int]$LASTEXITCODE
+        }
+        return 0
+    } finally {
+        Remove-Item -Path $tempScriptPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Resolve-WingetPath {
     Refresh-Path
 
@@ -371,6 +406,15 @@ function Ensure-GhAuthenticated {
     }
 }
 
+function Should-ForceInteractiveSetupAuth {
+    $assumeYes = $null
+    if (-not [string]::IsNullOrWhiteSpace($env:GIT_SWEATY_BOOTSTRAP_ASSUME_YES)) {
+        $assumeYes = $env:GIT_SWEATY_BOOTSTRAP_ASSUME_YES.Trim().ToLowerInvariant()
+    }
+
+    return -not ($assumeYes -in @("1", "true", "yes", "y"))
+}
+
 function Get-SetupArgValue {
     param(
         [string[]]$SetupArgs,
@@ -630,6 +674,11 @@ function Invoke-OnlineSetup {
         Write-Info ""
         Write-Info "Launching online setup..."
         $env:GIT_SWEATY_BOOTSTRAP_GH_PATH = $GhPath
+        if (Should-ForceInteractiveSetupAuth) {
+            $env:GIT_SWEATY_BOOTSTRAP_FORCE_INTERACTIVE = "1"
+        } else {
+            Remove-Item Env:GIT_SWEATY_BOOTSTRAP_FORCE_INTERACTIVE -ErrorAction SilentlyContinue
+        }
         $ghDir = Split-Path -Path $GhPath -Parent
         if (-not [string]::IsNullOrWhiteSpace($ghDir)) {
             $pathEntries = @($env:Path -split ";" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
@@ -669,6 +718,14 @@ function Invoke-OnlineSetup {
 }
 
 try {
+    $relaunchExitCode = Invoke-SelfFromTempScriptIfNeeded -SetupArgs $SetupArgs
+    if ($null -ne $relaunchExitCode) {
+        if ([int]$relaunchExitCode -ne 0) {
+            exit [int]$relaunchExitCode
+        }
+        return
+    }
+
     Write-Info "Preparing native Windows setup (online-only, no WSL required)..."
 
     $pythonRuntime = Ensure-PythonRuntime

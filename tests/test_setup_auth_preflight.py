@@ -23,6 +23,22 @@ def _completed_process(returncode: int, stdout: str = "", stderr: str = "") -> s
 
 
 class SetupAuthPreflightTests(unittest.TestCase):
+    def test_isatty_honors_bootstrap_force_interactive_env(self) -> None:
+        with (
+            mock.patch.dict(os.environ, {"GIT_SWEATY_BOOTSTRAP_FORCE_INTERACTIVE": "1"}, clear=False),
+            mock.patch("setup_auth.sys.stdin.isatty", return_value=False),
+            mock.patch("setup_auth.sys.stdout.isatty", return_value=False),
+        ):
+            self.assertTrue(setup_auth._isatty())
+
+    def test_isatty_uses_standard_stream_detection_without_override(self) -> None:
+        with (
+            mock.patch.dict(os.environ, {"GIT_SWEATY_BOOTSTRAP_FORCE_INTERACTIVE": ""}, clear=False),
+            mock.patch("setup_auth.sys.stdin.isatty", return_value=True),
+            mock.patch("setup_auth.sys.stdout.isatty", return_value=False),
+        ):
+            self.assertFalse(setup_auth._isatty())
+
     def test_prompt_marks_secret_input_as_hidden(self) -> None:
         with mock.patch("setup_auth._prompt_secret_masked", return_value=" secret ") as prompt_mock:
             value = setup_auth._prompt(None, "STRAVA_CLIENT_SECRET", secret=True)

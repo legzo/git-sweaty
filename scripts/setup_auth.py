@@ -229,6 +229,8 @@ def _normalize_cmd(cmd: list[str]) -> list[str]:
 
 
 def _isatty() -> bool:
+    if _parse_bool_text(os.environ.get("GIT_SWEATY_BOOTSTRAP_FORCE_INTERACTIVE"), field_name="GIT_SWEATY_BOOTSTRAP_FORCE_INTERACTIVE"):
+        return True
     return bool(sys.stdin.isatty() and sys.stdout.isatty())
 
 
