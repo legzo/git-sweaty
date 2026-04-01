@@ -23975,6 +23975,33 @@
       "type": "Ride",
       "url": "https://www.strava.com/activities/17921238037",
       "year": 2026
+    },
+    {
+      "date": "2026-03-31",
+      "hour": 18,
+      "name": "Evening Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/17927139840",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-01",
+      "hour": 8,
+      "name": "Morning Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/17934274509",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-01",
+      "hour": 12,
+      "name": "Lunch Run",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://www.strava.com/activities/17936068915",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40423,12 +40450,22 @@
         },
         "2026-03-31": {
           "activity_ids": [
-            "17921238037"
+            "17921238037",
+            "17927139840"
+          ],
+          "count": 2,
+          "distance": 25404.4,
+          "elevation_gain": 134.0,
+          "moving_time": 4578.0
+        },
+        "2026-04-01": {
+          "activity_ids": [
+            "17934274509"
           ],
           "count": 1,
-          "distance": 12831.2,
-          "elevation_gain": 90.0,
-          "moving_time": 2387.0
+          "distance": 12818.0,
+          "elevation_gain": 88.0,
+          "moving_time": 2233.0
         }
       },
       "Run": {
@@ -40818,6 +40855,15 @@
           "distance": 8184.2,
           "elevation_gain": 38.0,
           "moving_time": 2774.0
+        },
+        "2026-04-01": {
+          "activity_ids": [
+            "17936068915"
+          ],
+          "count": 1,
+          "distance": 11067.1,
+          "elevation_gain": 65.0,
+          "moving_time": 3591.0
         }
       },
       "WeightTraining": {
@@ -40853,7 +40899,7 @@
       }
     }
   },
-  "generated_at": "2026-03-31T16:00:22.811371+00:00",
+  "generated_at": "2026-04-01T16:02:49.651583+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
