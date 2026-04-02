@@ -24002,6 +24002,24 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/17936068915",
       "year": 2026
+    },
+    {
+      "date": "2026-04-01",
+      "hour": 18,
+      "name": "Evening Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/17940568783",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-02",
+      "hour": 8,
+      "name": "Morning Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/17946526207",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40460,12 +40478,22 @@
         },
         "2026-04-01": {
           "activity_ids": [
-            "17934274509"
+            "17934274509",
+            "17940568783"
+          ],
+          "count": 2,
+          "distance": 25390.0,
+          "elevation_gain": 130.0,
+          "moving_time": 4286.0
+        },
+        "2026-04-02": {
+          "activity_ids": [
+            "17946526207"
           ],
           "count": 1,
-          "distance": 12818.0,
-          "elevation_gain": 88.0,
-          "moving_time": 2233.0
+          "distance": 12820.4,
+          "elevation_gain": 95.0,
+          "moving_time": 2207.0
         }
       },
       "Run": {
@@ -40899,7 +40927,7 @@
       }
     }
   },
-  "generated_at": "2026-04-01T16:02:49.651583+00:00",
+  "generated_at": "2026-04-02T15:52:48.088907+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
