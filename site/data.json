@@ -24020,6 +24020,24 @@
       "type": "Ride",
       "url": "https://www.strava.com/activities/17946526207",
       "year": 2026
+    },
+    {
+      "date": "2026-04-02",
+      "hour": 18,
+      "name": "Evening Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/17952189412",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-03",
+      "hour": 12,
+      "name": "Lunch Run",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://www.strava.com/activities/17960817707",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40488,12 +40506,13 @@
         },
         "2026-04-02": {
           "activity_ids": [
-            "17946526207"
+            "17946526207",
+            "17952189412"
           ],
-          "count": 1,
-          "distance": 12820.4,
-          "elevation_gain": 95.0,
-          "moving_time": 2207.0
+          "count": 2,
+          "distance": 25380.4,
+          "elevation_gain": 138.0,
+          "moving_time": 4357.0
         }
       },
       "Run": {
@@ -40892,6 +40911,15 @@
           "distance": 11067.1,
           "elevation_gain": 65.0,
           "moving_time": 3591.0
+        },
+        "2026-04-03": {
+          "activity_ids": [
+            "17960817707"
+          ],
+          "count": 1,
+          "distance": 13237.8,
+          "elevation_gain": 11.0,
+          "moving_time": 4138.0
         }
       },
       "WeightTraining": {
@@ -40927,7 +40955,7 @@
       }
     }
   },
-  "generated_at": "2026-04-02T15:52:48.088907+00:00",
+  "generated_at": "2026-04-03T15:33:53.404605+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
