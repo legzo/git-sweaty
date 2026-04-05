@@ -34721,5 +34721,18 @@
     "start_date_local": "2026-04-03T12:22:14Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-04-04",
+    "distance": 30303.7,
+    "elevation_gain": 195.0,
+    "id": "17978671677",
+    "moving_time": 3844.0,
+    "name": "Penne - Villeneuve",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-04T18:54:19Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]

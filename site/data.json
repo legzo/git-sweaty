@@ -24038,6 +24038,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/17960817707",
       "year": 2026
+    },
+    {
+      "date": "2026-04-04",
+      "hour": 18,
+      "name": "Penne - Villeneuve",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/17978671677",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40513,6 +40522,15 @@
           "distance": 25380.4,
           "elevation_gain": 138.0,
           "moving_time": 4357.0
+        },
+        "2026-04-04": {
+          "activity_ids": [
+            "17978671677"
+          ],
+          "count": 1,
+          "distance": 30303.7,
+          "elevation_gain": 195.0,
+          "moving_time": 3844.0
         }
       },
       "Run": {
@@ -40955,7 +40973,7 @@
       }
     }
   },
-  "generated_at": "2026-04-04T15:23:39.225127+00:00",
+  "generated_at": "2026-04-05T10:53:39.231809+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
