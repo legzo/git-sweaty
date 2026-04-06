@@ -34734,5 +34734,31 @@
     "start_date_local": "2026-04-04T18:54:19Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-04-05",
+    "distance": 41143.1,
+    "elevation_gain": 464.0,
+    "id": "17989842612",
+    "moving_time": 5397.0,
+    "name": "Penne - Valeilles - Massoules",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-05T16:36:14Z",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-04-06",
+    "distance": 8082.0,
+    "elevation_gain": 55.0,
+    "id": "17996373445",
+    "moving_time": 2754.0,
+    "name": "Morning Run",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-04-06T10:45:45Z",
+    "type": "Run",
+    "year": 2026
   }
 ]
