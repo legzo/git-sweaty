@@ -34799,5 +34799,31 @@
     "start_date_local": "2026-04-08T12:05:26Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-04-08",
+    "distance": 33311.8,
+    "elevation_gain": 53.0,
+    "id": "18029708968",
+    "moving_time": 4129.0,
+    "name": "Bordeaux - Lignan",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-08T17:20:35Z",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-04-09",
+    "distance": 12929.0,
+    "elevation_gain": 91.0,
+    "id": "18037204255",
+    "moving_time": 2261.0,
+    "name": "Morning Ride",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-09T08:44:06Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
