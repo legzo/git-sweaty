@@ -34851,5 +34851,18 @@
     "start_date_local": "2026-04-10T12:18:18Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-04-11",
+    "distance": 2672.0,
+    "elevation_gain": 109.0,
+    "id": "18070069053",
+    "moving_time": 3168.0,
+    "name": "Notre-Dame-de-la-Rouvi\u00e8re",
+    "raw_activity_type": "Walk",
+    "raw_type": "Walk",
+    "start_date_local": "2026-04-11T18:21:31Z",
+    "type": "Walk",
+    "year": 2026
   }
 ]

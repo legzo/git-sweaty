@@ -24128,6 +24128,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18052250501",
       "year": 2026
+    },
+    {
+      "date": "2026-04-11",
+      "hour": 18,
+      "name": "Notre-Dame-de-la-Rouvi\u00e8re",
+      "subtype": "Walk",
+      "type": "Walk",
+      "url": "https://www.strava.com/activities/18070069053",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41086,6 +41095,17 @@
           "moving_time": 3789.0
         }
       },
+      "Walk": {
+        "2026-04-11": {
+          "activity_ids": [
+            "18070069053"
+          ],
+          "count": 1,
+          "distance": 2672.0,
+          "elevation_gain": 109.0,
+          "moving_time": 3168.0
+        }
+      },
       "WeightTraining": {
         "2026-01-23": {
           "activity_ids": [
@@ -41119,7 +41139,7 @@
       }
     }
   },
-  "generated_at": "2026-04-11T15:25:34.519653+00:00",
+  "generated_at": "2026-04-12T15:29:16.488802+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
@@ -41142,6 +41162,10 @@
       "accent": "#3a86ff",
       "label": "Swim"
     },
+    "Walk": {
+      "accent": "#d6ff6b",
+      "label": "Walk"
+    },
     "WeightTraining": {
       "accent": "#ff71ce",
       "label": "Weight Training"
@@ -41156,6 +41180,7 @@
     "Ride",
     "Run",
     "Swim",
+    "Walk",
     "WeightTraining",
     "Workout"
   ],
