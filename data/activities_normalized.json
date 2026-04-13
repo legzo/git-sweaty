@@ -34864,5 +34864,44 @@
     "start_date_local": "2026-04-11T18:21:31Z",
     "type": "Walk",
     "year": 2026
+  },
+  {
+    "date": "2026-04-12",
+    "distance": 8564.4,
+    "elevation_gain": 201.0,
+    "id": "18083159379",
+    "moving_time": 2783.0,
+    "name": "L'Euzi\u00e8re - Mas Corbi\u00e8res",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-04-12T18:36:06Z",
+    "type": "Run",
+    "year": 2026
+  },
+  {
+    "date": "2026-04-13",
+    "distance": 5014.8,
+    "elevation_gain": 125.0,
+    "id": "18092105545",
+    "moving_time": 4655.0,
+    "name": "Afternoon Hike",
+    "raw_activity_type": "Hike",
+    "raw_type": "Hike",
+    "start_date_local": "2026-04-13T15:18:11Z",
+    "type": "Hike",
+    "year": 2026
+  },
+  {
+    "date": "2026-04-13",
+    "distance": 1029.0,
+    "elevation_gain": 49.0,
+    "id": "18092848712",
+    "moving_time": 1196.0,
+    "name": "Afternoon Hike",
+    "raw_activity_type": "Hike",
+    "raw_type": "Hike",
+    "start_date_local": "2026-04-13T17:32:19Z",
+    "type": "Hike",
+    "year": 2026
   }
 ]
