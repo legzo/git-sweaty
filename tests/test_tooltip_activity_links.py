@@ -132,11 +132,11 @@ class TooltipActivityLinksTests(unittest.TestCase):
             result,
             [
                 [{"text": "Trail Run: 1"}],
-                [{"text": "- Distance: 3.25 mi"}],
-                [{"text": "- Elevation: 476 ft"}],
-                [{"text": "- Duration: 38m"}],
+                [{"text": "Distance: 3.25 mi"}],
+                [{"text": "Elevation: 476 ft"}],
+                [{"text": "Duration: 38m"}],
                 [{"text": "Other Workout: 1"}],
-                [{"text": "- Duration: 1h 12m"}],
+                [{"text": "Duration: 1h 12m"}],
             ],
         )
 

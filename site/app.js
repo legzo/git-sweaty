@@ -2724,7 +2724,7 @@ function formatTypeBreakdownLinesWithLinks(
       ? typeMetricsByType[activityType]
       : null;
     if (typeMetrics && typeof typeMetrics === "object") {
-      lines.push(...formatTooltipMetricLines(typeMetrics, units, "- "));
+      lines.push(...formatTooltipMetricLines(typeMetrics, units));
     }
   });
 
