@@ -24150,7 +24150,7 @@
     {
       "date": "2026-04-13",
       "hour": 15,
-      "name": "Afternoon Hike",
+      "name": "Cazilhac - Balade des Norias",
       "subtype": "Hike",
       "type": "Hike",
       "url": "https://www.strava.com/activities/18092105545",
@@ -24159,10 +24159,19 @@
     {
       "date": "2026-04-13",
       "hour": 17,
-      "name": "Afternoon Hike",
+      "name": "Saint Martial",
+      "subtype": "Walk",
+      "type": "Walk",
+      "url": "https://www.strava.com/activities/18092848712",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-14",
+      "hour": 12,
+      "name": "Lunch Hike",
       "subtype": "Hike",
       "type": "Hike",
-      "url": "https://www.strava.com/activities/18092848712",
+      "url": "https://www.strava.com/activities/18105413631",
       "year": 2026
     }
   ],
@@ -40175,13 +40184,21 @@
         },
         "2026-04-13": {
           "activity_ids": [
-            "18092105545",
-            "18092848712"
+            "18092105545"
           ],
-          "count": 2,
-          "distance": 6043.8,
-          "elevation_gain": 174.0,
-          "moving_time": 5851.0
+          "count": 1,
+          "distance": 5014.8,
+          "elevation_gain": 125.0,
+          "moving_time": 4655.0
+        },
+        "2026-04-14": {
+          "activity_ids": [
+            "18105413631"
+          ],
+          "count": 1,
+          "distance": 10737.0,
+          "elevation_gain": 395.0,
+          "moving_time": 10659.0
         }
       },
       "Ride": {
@@ -41150,6 +41167,15 @@
           "distance": 2672.0,
           "elevation_gain": 109.0,
           "moving_time": 3168.0
+        },
+        "2026-04-13": {
+          "activity_ids": [
+            "18092848712"
+          ],
+          "count": 1,
+          "distance": 1029.0,
+          "elevation_gain": 49.0,
+          "moving_time": 1196.0
         }
       },
       "WeightTraining": {
@@ -41185,7 +41211,7 @@
       }
     }
   },
-  "generated_at": "2026-04-13T16:07:38.256453+00:00",
+  "generated_at": "2026-04-14T16:03:16.118792+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
