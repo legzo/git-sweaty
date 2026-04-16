@@ -34916,5 +34916,31 @@
     "start_date_local": "2026-04-14T12:09:13Z",
     "type": "Hike",
     "year": 2026
+  },
+  {
+    "date": "2026-04-15",
+    "distance": 8155.0,
+    "elevation_gain": 256.0,
+    "id": "18121791270",
+    "moving_time": 2870.0,
+    "name": "L'Euzi\u00e8re - Puech Sigal",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-04-15T18:55:15Z",
+    "type": "Run",
+    "year": 2026
+  },
+  {
+    "date": "2026-04-16",
+    "distance": 11217.9,
+    "elevation_gain": 390.0,
+    "id": "18132504988",
+    "moving_time": 10535.0,
+    "name": "Col de Prat Peyrot - Mont Aigoual - L'Hort de Dieu",
+    "raw_activity_type": "Hike",
+    "raw_type": "Hike",
+    "start_date_local": "2026-04-16T12:04:43Z",
+    "type": "Hike",
+    "year": 2026
   }
 ]
