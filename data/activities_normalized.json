@@ -34948,12 +34948,25 @@
     "distance": 2050.0,
     "elevation_gain": 205.0,
     "id": "18145734271",
-    "moving_time": 2443.0,
-    "name": "Afternoon Hike",
-    "raw_activity_type": "Hike",
-    "raw_type": "Hike",
+    "moving_time": 2444.0,
+    "name": "Via Ferrata du Thaurac",
+    "raw_activity_type": "RockClimbing",
+    "raw_type": "RockClimbing",
     "start_date_local": "2026-04-17T13:21:34Z",
-    "type": "Hike",
+    "type": "RockClimbing",
+    "year": 2026
+  },
+  {
+    "date": "2026-04-17",
+    "distance": 8176.6,
+    "elevation_gain": 180.0,
+    "id": "18147931115",
+    "moving_time": 2727.0,
+    "name": "Le Mazel - Menard",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-04-17T18:47:40Z",
+    "type": "Run",
     "year": 2026
   }
 ]
