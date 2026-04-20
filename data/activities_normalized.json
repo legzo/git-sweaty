@@ -34981,5 +34981,18 @@
     "start_date_local": "2026-04-18T19:53:46Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-04-19",
+    "distance": 65282.2,
+    "elevation_gain": 500.0,
+    "id": "18174549098",
+    "moving_time": 8438.0,
+    "name": "Bordeaux - Fargues - Cursan - St Gen\u00e8s de Lombaud",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-19T11:41:08Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]

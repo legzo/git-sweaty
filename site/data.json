@@ -24218,6 +24218,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18162549757",
       "year": 2026
+    },
+    {
+      "date": "2026-04-19",
+      "hour": 11,
+      "name": "Bordeaux - Fargues - Cursan - St Gen\u00e8s de Lombaud",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18174549098",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40767,6 +40776,15 @@
           "distance": 25756.0,
           "elevation_gain": 133.0,
           "moving_time": 4260.0
+        },
+        "2026-04-19": {
+          "activity_ids": [
+            "18174549098"
+          ],
+          "count": 1,
+          "distance": 65282.2,
+          "elevation_gain": 500.0,
+          "moving_time": 8438.0
         }
       },
       "RockClimbing": {
@@ -41303,7 +41321,7 @@
       }
     }
   },
-  "generated_at": "2026-04-19T15:30:43.104480+00:00",
+  "generated_at": "2026-04-20T16:02:44.137820+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
