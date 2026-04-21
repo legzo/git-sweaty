@@ -24227,6 +24227,24 @@
       "type": "Ride",
       "url": "https://www.strava.com/activities/18174549098",
       "year": 2026
+    },
+    {
+      "date": "2026-04-20",
+      "hour": 17,
+      "name": "Afternoon Walk",
+      "subtype": "Walk",
+      "type": "Walk",
+      "url": "https://www.strava.com/activities/18186043985",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-21",
+      "hour": 8,
+      "name": "Morning Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18193580748",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40785,6 +40803,15 @@
           "distance": 65282.2,
           "elevation_gain": 500.0,
           "moving_time": 8438.0
+        },
+        "2026-04-21": {
+          "activity_ids": [
+            "18193580748"
+          ],
+          "count": 1,
+          "distance": 12463.5,
+          "elevation_gain": 94.0,
+          "moving_time": 2172.0
         }
       },
       "RockClimbing": {
@@ -41286,6 +41313,15 @@
           "distance": 1029.0,
           "elevation_gain": 49.0,
           "moving_time": 1196.0
+        },
+        "2026-04-20": {
+          "activity_ids": [
+            "18186043985"
+          ],
+          "count": 1,
+          "distance": 4169.5,
+          "elevation_gain": 5.0,
+          "moving_time": 2679.0
         }
       },
       "WeightTraining": {
@@ -41321,7 +41357,7 @@
       }
     }
   },
-  "generated_at": "2026-04-20T16:02:44.137820+00:00",
+  "generated_at": "2026-04-21T16:05:52.350757+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
