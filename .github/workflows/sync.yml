@@ -2,7 +2,7 @@ name: Sync Heatmaps
 
 on:
   schedule:
-    - cron: "0 15 * * *"
+    - cron: "0 8,13,20 * * *"
   workflow_dispatch:
     inputs:
       source:
