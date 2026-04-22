@@ -3341,7 +3341,7 @@ function buildHeatmapArea(aggregates, year, units, colors, type, layout, options
 
     const showAggregateTotals = !(shouldShowPerTypeMetrics && renderedTypeBreakdown);
     if (showAggregateTotals) {
-      lines.push(...formatTooltipMetricLines(entry, units));
+      lines.push(...formatTooltipMetricLines(entry, units, "- "));
     }
     const tooltipContent = { lines };
     const canPinTooltip = Boolean(flattenTooltipActivityLinks(activityLinksByType).length);

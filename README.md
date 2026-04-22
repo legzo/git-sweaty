@@ -168,7 +168,11 @@ Choose one auth path:
 2. Token-only path: add
    - `GARMIN_TOKENS_B64`
 
-`GARMIN_TOKENS_B64` is optional unless you explicitly run token-only config.
+`GARMIN_TOKENS_B64` is optional unless you explicitly run token-only config, but it is recommended for reliable scheduled syncs. Garmin's current auth flow is much more reliable when the workflow can reuse saved tokens instead of doing a fresh password login every day.
+
+Optional but recommended for automatic Garmin token rotation:
+
+- Add `GARMIN_SECRET_UPDATE_TOKEN` (a GitHub token with repo write access to this fork). Setup attempts to configure this automatically from your current `gh` auth session.
 
 ### 3) Run the first sync and deploy
 
