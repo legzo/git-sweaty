@@ -24326,6 +24326,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18255034659",
       "year": 2026
+    },
+    {
+      "date": "2026-04-26",
+      "hour": 22,
+      "name": "Night Workout",
+      "subtype": "Workout",
+      "type": "Workout",
+      "url": "https://www.strava.com/activities/18271517459",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41491,11 +41500,20 @@
           "distance": 0.0,
           "elevation_gain": 0.0,
           "moving_time": 1802.0
+        },
+        "2026-04-26": {
+          "activity_ids": [
+            "18271517459"
+          ],
+          "count": 1,
+          "distance": 0.0,
+          "elevation_gain": 0.0,
+          "moving_time": 1458.0
         }
       }
     }
   },
-  "generated_at": "2026-04-26T14:04:23.529552+00:00",
+  "generated_at": "2026-04-26T20:36:35.090675+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",

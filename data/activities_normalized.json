@@ -35137,5 +35137,18 @@
     "start_date_local": "2026-04-25T17:50:06Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-04-26",
+    "distance": 0.0,
+    "elevation_gain": 0.0,
+    "id": "18271517459",
+    "moving_time": 1458.0,
+    "name": "Night Workout",
+    "raw_activity_type": "Workout",
+    "raw_type": "Workout",
+    "start_date_local": "2026-04-26T22:09:35Z",
+    "type": "Workout",
+    "year": 2026
   }
 ]
