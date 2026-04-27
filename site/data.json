@@ -24344,6 +24344,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18275003712",
       "year": 2026
+    },
+    {
+      "date": "2026-04-27",
+      "hour": 17,
+      "name": "Bordeaux - Escorgeb\u0153uf",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18280323254",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40941,6 +40950,15 @@
           "distance": 32253.6,
           "elevation_gain": 88.0,
           "moving_time": 3816.0
+        },
+        "2026-04-27": {
+          "activity_ids": [
+            "18280323254"
+          ],
+          "count": 1,
+          "distance": 32227.9,
+          "elevation_gain": 81.0,
+          "moving_time": 3931.0
         }
       },
       "RockClimbing": {
@@ -41531,7 +41549,7 @@
       }
     }
   },
-  "generated_at": "2026-04-27T15:06:59.713326+00:00",
+  "generated_at": "2026-04-27T21:00:11.207751+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
