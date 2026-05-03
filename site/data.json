@@ -24416,6 +24416,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18348743954",
       "year": 2026
+    },
+    {
+      "date": "2026-05-03",
+      "hour": 18,
+      "name": "Fargues - Lignan - Bordeaux",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18362868214",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41051,6 +41060,15 @@
           "distance": 31802.8,
           "elevation_gain": 76.0,
           "moving_time": 3889.0
+        },
+        "2026-05-03": {
+          "activity_ids": [
+            "18362868214"
+          ],
+          "count": 1,
+          "distance": 22077.0,
+          "elevation_gain": 63.0,
+          "moving_time": 2581.0
         }
       },
       "RockClimbing": {
@@ -41659,7 +41677,7 @@
       }
     }
   },
-  "generated_at": "2026-05-03T14:10:46.024821+00:00",
+  "generated_at": "2026-05-03T20:40:50.191010+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
