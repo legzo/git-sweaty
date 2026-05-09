@@ -35410,5 +35410,18 @@
     "start_date_local": "2026-05-08T18:39:51Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-05-09",
+    "distance": 25122.4,
+    "elevation_gain": 39.0,
+    "id": "18441438190",
+    "moving_time": 3374.0,
+    "name": "La Teste - Cazaux",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-09T17:22:55Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
