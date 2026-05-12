@@ -24560,6 +24560,15 @@
       "type": "Ride",
       "url": "https://www.strava.com/activities/18473395904",
       "year": 2026
+    },
+    {
+      "date": "2026-05-12",
+      "hour": 17,
+      "name": "Afternoon Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18480607180",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41255,12 +41264,13 @@
         },
         "2026-05-12": {
           "activity_ids": [
-            "18473395904"
+            "18473395904",
+            "18480607180"
           ],
-          "count": 1,
-          "distance": 12831.0,
-          "elevation_gain": 94.0,
-          "moving_time": 2229.0
+          "count": 2,
+          "distance": 25518.1,
+          "elevation_gain": 148.0,
+          "moving_time": 4394.0
         }
       },
       "RockClimbing": {
@@ -41923,7 +41933,7 @@
       }
     }
   },
-  "generated_at": "2026-05-12T15:39:03.205516+00:00",
+  "generated_at": "2026-05-12T21:18:10.100364+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
