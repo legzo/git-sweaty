@@ -35540,5 +35540,18 @@
     "start_date_local": "2026-05-14T12:04:06Z",
     "type": "Hike",
     "year": 2026
+  },
+  {
+    "date": "2026-05-14",
+    "distance": 10304.8,
+    "elevation_gain": 171.0,
+    "id": "18507186062",
+    "moving_time": 3332.0,
+    "name": "Mensignac - For\u00eat de la Faye",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-05-14T18:38:37Z",
+    "type": "Run",
+    "year": 2026
   }
 ]

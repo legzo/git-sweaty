@@ -24605,6 +24605,15 @@
       "type": "Hike",
       "url": "https://www.strava.com/activities/18502647900",
       "year": 2026
+    },
+    {
+      "date": "2026-05-14",
+      "hour": 18,
+      "name": "Mensignac - For\u00eat de la Faye",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://www.strava.com/activities/18507186062",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41906,6 +41915,15 @@
           "distance": 9371.0,
           "elevation_gain": 30.0,
           "moving_time": 3154.0
+        },
+        "2026-05-14": {
+          "activity_ids": [
+            "18507186062"
+          ],
+          "count": 1,
+          "distance": 10304.8,
+          "elevation_gain": 171.0,
+          "moving_time": 3332.0
         }
       },
       "Walk": {
@@ -41997,7 +42015,7 @@
       }
     }
   },
-  "generated_at": "2026-05-14T15:17:17.260944+00:00",
+  "generated_at": "2026-05-14T21:08:18.909413+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
