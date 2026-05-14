@@ -35527,5 +35527,18 @@
     "start_date_local": "2026-05-13T17:20:57Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-14",
+    "distance": 4807.0,
+    "elevation_gain": 119.0,
+    "id": "18502647900",
+    "moving_time": 4437.0,
+    "name": "Lunch Hike",
+    "raw_activity_type": "Hike",
+    "raw_type": "Hike",
+    "start_date_local": "2026-05-14T12:04:06Z",
+    "type": "Hike",
+    "year": 2026
   }
 ]
