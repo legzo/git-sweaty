@@ -35553,5 +35553,18 @@
     "start_date_local": "2026-05-14T18:38:37Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-05-15",
+    "distance": 2378.0,
+    "elevation_gain": 23.0,
+    "id": "18514862262",
+    "moving_time": 2761.0,
+    "name": "Balade \u00e0 Brant\u00f4me",
+    "raw_activity_type": "Walk",
+    "raw_type": "Walk",
+    "start_date_local": "2026-05-15T11:02:01Z",
+    "type": "Walk",
+    "year": 2026
   }
 ]
