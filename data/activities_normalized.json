@@ -35566,5 +35566,18 @@
     "start_date_local": "2026-05-15T11:02:01Z",
     "type": "Walk",
     "year": 2026
+  },
+  {
+    "date": "2026-05-15",
+    "distance": 4501.0,
+    "elevation_gain": 43.0,
+    "id": "18518687952",
+    "moving_time": 5049.0,
+    "name": "\u00c9tang de la Jemaye",
+    "raw_activity_type": "Hike",
+    "raw_type": "Hike",
+    "start_date_local": "2026-05-15T16:17:15Z",
+    "type": "Hike",
+    "year": 2026
   }
 ]

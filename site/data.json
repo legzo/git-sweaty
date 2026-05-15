@@ -24623,6 +24623,15 @@
       "type": "Walk",
       "url": "https://www.strava.com/activities/18514862262",
       "year": 2026
+    },
+    {
+      "date": "2026-05-15",
+      "hour": 16,
+      "name": "\u00c9tang de la Jemaye",
+      "subtype": "Hike",
+      "type": "Hike",
+      "url": "https://www.strava.com/activities/18518687952",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -40667,6 +40676,15 @@
           "distance": 4807.0,
           "elevation_gain": 119.0,
           "moving_time": 4437.0
+        },
+        "2026-05-15": {
+          "activity_ids": [
+            "18518687952"
+          ],
+          "count": 1,
+          "distance": 4501.0,
+          "elevation_gain": 43.0,
+          "moving_time": 5049.0
         }
       },
       "Ride": {
@@ -42033,7 +42051,7 @@
       }
     }
   },
-  "generated_at": "2026-05-15T15:12:05.929869+00:00",
+  "generated_at": "2026-05-15T20:58:48.762456+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
