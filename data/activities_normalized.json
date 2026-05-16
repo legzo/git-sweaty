@@ -35579,5 +35579,18 @@
     "start_date_local": "2026-05-15T16:17:15Z",
     "type": "Hike",
     "year": 2026
+  },
+  {
+    "date": "2026-05-16",
+    "distance": 36053.2,
+    "elevation_gain": 129.0,
+    "id": "18532378906",
+    "moving_time": 4305.0,
+    "name": "Bordeaux - Carignan - Lignan",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-16T17:33:22Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
