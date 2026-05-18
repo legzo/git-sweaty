@@ -24654,10 +24654,19 @@
     {
       "date": "2026-05-18",
       "hour": 12,
-      "name": "Lunch Ride",
+      "name": "Bordeaux - Escorgeb\u0153uf",
       "subtype": "Ride",
       "type": "Ride",
       "url": "https://www.strava.com/activities/18553207286",
+      "year": 2026
+    },
+    {
+      "date": "2026-05-18",
+      "hour": 17,
+      "name": "Afternoon Run",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://www.strava.com/activities/18556548347",
       "year": 2026
     }
   ],
@@ -42005,6 +42014,15 @@
           "distance": 11241.5,
           "elevation_gain": 29.0,
           "moving_time": 3594.0
+        },
+        "2026-05-18": {
+          "activity_ids": [
+            "18556548347"
+          ],
+          "count": 1,
+          "distance": 8179.4,
+          "elevation_gain": 29.0,
+          "moving_time": 2829.0
         }
       },
       "Walk": {
@@ -42105,7 +42123,7 @@
       }
     }
   },
-  "generated_at": "2026-05-18T11:42:51.089191+00:00",
+  "generated_at": "2026-05-18T16:21:40.675977+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
