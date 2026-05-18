@@ -24663,7 +24663,7 @@
     {
       "date": "2026-05-18",
       "hour": 17,
-      "name": "Afternoon Run",
+      "name": "Evening Run",
       "subtype": "Run",
       "type": "Run",
       "url": "https://www.strava.com/activities/18556548347",
@@ -42123,7 +42123,7 @@
       }
     }
   },
-  "generated_at": "2026-05-18T16:21:40.675977+00:00",
+  "generated_at": "2026-05-18T21:11:24.784520+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
