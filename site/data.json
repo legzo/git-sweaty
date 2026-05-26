@@ -24731,6 +24731,15 @@
       "type": "Ride",
       "url": "https://www.strava.com/activities/18632096471",
       "year": 2026
+    },
+    {
+      "date": "2026-05-26",
+      "hour": 8,
+      "name": "Morning Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18657439576",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41508,6 +41517,15 @@
           "distance": 51142.0,
           "elevation_gain": 598.0,
           "moving_time": 6743.0
+        },
+        "2026-05-26": {
+          "activity_ids": [
+            "18657439576"
+          ],
+          "count": 1,
+          "distance": 13430.0,
+          "elevation_gain": 97.0,
+          "moving_time": 2336.0
         }
       },
       "RockClimbing": {
@@ -42233,7 +42251,7 @@
       }
     }
   },
-  "generated_at": "2026-05-25T21:04:29.068856+00:00",
+  "generated_at": "2026-05-26T16:41:52.468584+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
