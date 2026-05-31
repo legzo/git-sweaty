@@ -35826,5 +35826,18 @@
     "start_date_local": "2026-05-30T08:17:27Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-05-31",
+    "distance": 62124.7,
+    "elevation_gain": 315.0,
+    "id": "18725940908",
+    "moving_time": 7595.0,
+    "name": "Bordeaux - La Lande - La Sauve",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-31T09:23:12Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]

@@ -24803,6 +24803,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18710804813",
       "year": 2026
+    },
+    {
+      "date": "2026-05-31",
+      "hour": 9,
+      "name": "Bordeaux - La Lande - La Sauve",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18725940908",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41619,6 +41628,15 @@
           "distance": 31061.0,
           "elevation_gain": 49.0,
           "moving_time": 3758.0
+        },
+        "2026-05-31": {
+          "activity_ids": [
+            "18725940908"
+          ],
+          "count": 1,
+          "distance": 62124.7,
+          "elevation_gain": 315.0,
+          "moving_time": 7595.0
         }
       },
       "RockClimbing": {
@@ -42353,7 +42371,7 @@
       }
     }
   },
-  "generated_at": "2026-05-30T20:53:53.324007+00:00",
+  "generated_at": "2026-05-31T10:13:44.092737+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
