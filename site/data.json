@@ -24821,6 +24821,24 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18738236800",
       "year": 2026
+    },
+    {
+      "date": "2026-06-02",
+      "hour": 8,
+      "name": "Morning Ride",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18751819081",
+      "year": 2026
+    },
+    {
+      "date": "2026-06-02",
+      "hour": 12,
+      "name": "Course \u00e0 pied le midi",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://www.strava.com/activities/18753799713",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41646,6 +41664,15 @@
           "distance": 62124.7,
           "elevation_gain": 315.0,
           "moving_time": 7595.0
+        },
+        "2026-06-02": {
+          "activity_ids": [
+            "18751819081"
+          ],
+          "count": 1,
+          "distance": 13346.0,
+          "elevation_gain": 104.0,
+          "moving_time": 2559.0
         }
       },
       "RockClimbing": {
@@ -42289,6 +42316,15 @@
           "distance": 8143.1,
           "elevation_gain": 8.0,
           "moving_time": 2768.0
+        },
+        "2026-06-02": {
+          "activity_ids": [
+            "18753799713"
+          ],
+          "count": 1,
+          "distance": 9336.3,
+          "elevation_gain": 22.0,
+          "moving_time": 3129.0
         }
       },
       "Walk": {
@@ -42389,7 +42425,7 @@
       }
     }
   },
-  "generated_at": "2026-06-01T22:32:54.903249+00:00",
+  "generated_at": "2026-06-02T12:03:16.716791+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
