@@ -24866,6 +24866,15 @@
       "type": "Run",
       "url": "https://www.strava.com/activities/18768274328",
       "year": 2026
+    },
+    {
+      "date": "2026-06-03",
+      "hour": 18,
+      "name": "Sortie v\u00e9lo en soir\u00e9e",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/18772456011",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -41704,12 +41713,13 @@
         },
         "2026-06-03": {
           "activity_ids": [
-            "18766138491"
+            "18766138491",
+            "18772456011"
           ],
-          "count": 1,
-          "distance": 12781.0,
-          "elevation_gain": 96.0,
-          "moving_time": 2161.0
+          "count": 2,
+          "distance": 25366.0,
+          "elevation_gain": 130.0,
+          "moving_time": 4115.0
         }
       },
       "RockClimbing": {
@@ -42471,7 +42481,7 @@
       }
     }
   },
-  "generated_at": "2026-06-03T12:40:20.436409+00:00",
+  "generated_at": "2026-06-03T17:59:14.343909+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",

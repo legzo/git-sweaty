@@ -35917,5 +35917,18 @@
     "start_date_local": "2026-06-03T12:04:45Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-06-03",
+    "distance": 12585.0,
+    "elevation_gain": 34.0,
+    "id": "18772456011",
+    "moving_time": 1954.0,
+    "name": "Sortie v\u00e9lo en soir\u00e9e",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-03T18:19:23Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
