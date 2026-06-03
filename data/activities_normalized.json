@@ -35872,7 +35872,7 @@
     "elevation_gain": 22.0,
     "id": "18753799713",
     "moving_time": 3129.0,
-    "name": "Course \u00e0 pied le midi",
+    "name": "Lunch run",
     "raw_activity_type": "Run",
     "raw_type": "Run",
     "start_date_local": "2026-06-02T12:01:11Z",
@@ -35890,6 +35890,32 @@
     "raw_type": "Ride",
     "start_date_local": "2026-06-02T18:12:18Z",
     "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-03",
+    "distance": 12781.0,
+    "elevation_gain": 96.0,
+    "id": "18766138491",
+    "moving_time": 2161.0,
+    "name": "Morning Ride",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-03T08:27:15Z",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-03",
+    "distance": 11719.2,
+    "elevation_gain": 57.0,
+    "id": "18768274328",
+    "moving_time": 3925.0,
+    "name": "Lunch Run",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-06-03T12:04:45Z",
+    "type": "Run",
     "year": 2026
   }
 ]
