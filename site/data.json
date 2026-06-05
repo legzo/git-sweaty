@@ -24893,6 +24893,15 @@
       "type": "Ride",
       "url": "https://www.strava.com/activities/18785754299",
       "year": 2026
+    },
+    {
+      "date": "2026-06-05",
+      "hour": 12,
+      "name": "Lunch Run",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://www.strava.com/activities/18795035169",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -42409,6 +42418,15 @@
           "distance": 11719.2,
           "elevation_gain": 57.0,
           "moving_time": 3925.0
+        },
+        "2026-06-05": {
+          "activity_ids": [
+            "18795035169"
+          ],
+          "count": 1,
+          "distance": 11148.0,
+          "elevation_gain": 9.0,
+          "moving_time": 3518.0
         }
       },
       "Walk": {
@@ -42509,7 +42527,7 @@
       }
     }
   },
-  "generated_at": "2026-06-04T16:19:37.624297+00:00",
+  "generated_at": "2026-06-05T11:26:46.515826+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
