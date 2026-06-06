@@ -35924,7 +35924,7 @@
     "elevation_gain": 34.0,
     "id": "18772456011",
     "moving_time": 1954.0,
-    "name": "Sortie v\u00e9lo en soir\u00e9e",
+    "name": "Evening Ride",
     "raw_activity_type": "Ride",
     "raw_type": "Ride",
     "start_date_local": "2026-06-03T18:19:23Z",
@@ -35967,6 +35967,32 @@
     "raw_activity_type": "Run",
     "raw_type": "Run",
     "start_date_local": "2026-06-05T12:01:00Z",
+    "type": "Run",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-06",
+    "distance": 10870.7,
+    "elevation_gain": 25.0,
+    "id": "18813012328",
+    "moving_time": 1612.0,
+    "name": "Evening Ride",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-06T18:04:27Z",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-06",
+    "distance": 8175.0,
+    "elevation_gain": 12.0,
+    "id": "18813683151",
+    "moving_time": 2831.0,
+    "name": "Evening Run",
+    "raw_activity_type": "Run",
+    "raw_type": "Run",
+    "start_date_local": "2026-06-06T18:56:11Z",
     "type": "Run",
     "year": 2026
   }
