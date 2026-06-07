@@ -35995,5 +35995,18 @@
     "start_date_local": "2026-06-06T18:56:11Z",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-06-07",
+    "distance": 31662.5,
+    "elevation_gain": 102.0,
+    "id": "18825786952",
+    "moving_time": 3763.0,
+    "name": "Bordeaux - Escorgeb\u0153uf",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-07T16:00:55Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
