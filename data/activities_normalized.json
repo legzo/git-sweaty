@@ -36015,11 +36015,24 @@
     "elevation_gain": 29.0,
     "id": "18833397664",
     "moving_time": 2956.0,
-    "name": "Course \u00e0 pied le matin",
+    "name": "Morning Run",
     "raw_activity_type": "Run",
     "raw_type": "Run",
     "start_date_local": "2026-06-08T08:58:41Z",
     "type": "Run",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-09",
+    "distance": 12481.0,
+    "elevation_gain": 98.0,
+    "id": "18846641537",
+    "moving_time": 2103.0,
+    "name": "Morning Ride",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-09T08:29:31Z",
+    "type": "Ride",
     "year": 2026
   }
 ]
