@@ -36327,10 +36327,23 @@
     "elevation_gain": 87.0,
     "id": "19112000629",
     "moving_time": 3991.0,
-    "name": "Afternoon Ride",
+    "name": "Bordeaux - Escorgeb\u0153uf",
     "raw_activity_type": "Ride",
     "raw_type": "Ride",
     "start_date_local": "2026-06-29T16:47:14Z",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-30",
+    "distance": 12830.7,
+    "elevation_gain": 93.0,
+    "id": "19120256455",
+    "moving_time": 2272.0,
+    "name": "Sortie v\u00e9lo le matin",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-30T09:28:55Z",
     "type": "Ride",
     "year": 2026
   }

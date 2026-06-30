@@ -25149,10 +25149,19 @@
     {
       "date": "2026-06-29",
       "hour": 16,
-      "name": "Afternoon Ride",
+      "name": "Bordeaux - Escorgeb\u0153uf",
       "subtype": "Ride",
       "type": "Ride",
       "url": "https://www.strava.com/activities/19112000629",
+      "year": 2026
+    },
+    {
+      "date": "2026-06-30",
+      "hour": 9,
+      "name": "Sortie v\u00e9lo le matin",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://www.strava.com/activities/19120256455",
       "year": 2026
     }
   ],
@@ -42140,6 +42149,15 @@
           "distance": 31906.0,
           "elevation_gain": 87.0,
           "moving_time": 3991.0
+        },
+        "2026-06-30": {
+          "activity_ids": [
+            "19120256455"
+          ],
+          "count": 1,
+          "distance": 12830.7,
+          "elevation_gain": 93.0,
+          "moving_time": 2272.0
         }
       },
       "RockClimbing": {
@@ -42991,7 +43009,7 @@
       }
     }
   },
-  "generated_at": "2026-06-29T21:24:31.568304+00:00",
+  "generated_at": "2026-06-30T10:55:18.404914+00:00",
   "other_bucket": "OtherSports",
   "profile_url": "https://www.strava.com/athletes/1167939",
   "repo": "legzo/git-sweaty",
