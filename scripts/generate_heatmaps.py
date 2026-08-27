@@ -56,7 +56,8 @@ def _year_range_from_config(config: Dict, aggregate_years: Dict) -> List[int]:
     sync_cfg = config.get("sync", {})
     current_year = utc_now().year
     start_date = sync_cfg.get("start_date")
-    if start_date:
+    preserve_history = bool(sync_cfg.get("preserve_history_before_start_date", False))
+    if start_date and not preserve_history:
         try:
             start_year = int(start_date.split("-")[0])
         except (ValueError, IndexError):

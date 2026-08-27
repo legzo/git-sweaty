@@ -36,10 +36,23 @@ class GenerateHeatmapsRenderContractTests(unittest.TestCase):
                 {"sync": {}},
                 {"2021": {}, "2023": {}},
             )
+            years_from_preserved_history = generate_heatmaps._year_range_from_config(
+                {
+                    "sync": {
+                        "start_date": "2026-07-01",
+                        "preserve_history_before_start_date": True,
+                    }
+                },
+                {"2012": {}, "2026": {}},
+            )
 
         self.assertEqual(years_from_start, [2024, 2025, 2026])
         self.assertEqual(years_from_lookback, [2025, 2026])
         self.assertEqual(years_from_data, [2021, 2022, 2023, 2024, 2025, 2026])
+        self.assertEqual(
+            years_from_preserved_history,
+            list(range(2012, 2027)),
+        )
 
     def test_type_totals_sums_positive_counts_only(self) -> None:
         aggregates_years = {
