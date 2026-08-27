@@ -56,6 +56,7 @@ STATE_PATH = os.path.join("data", "backfill_state_coros.json")
 ACCOUNT_PATH = os.path.join("data", "athletes_coros.json")
 SUMMARY_JSON = os.path.join("data", "last_sync_summary.json")
 SUMMARY_TXT = os.path.join("data", "last_sync_summary.txt")
+TOKEN_CACHE = ".coros_token.json"
 TRANSIENT_STATUS_CODES = {408, 425, 429, 500, 502, 503, 504}
 MAX_REQUEST_ATTEMPTS = 5
 
@@ -125,6 +126,31 @@ def _login(session: requests.Session, account: str, password: str, region: str) 
         "access_token": access_token,
         "user_id": str(data.get("userId") or ""),
     }
+
+
+def _save_token_cache(access_token: str) -> None:
+    write_json(
+        TOKEN_CACHE,
+        {
+            "access_token": access_token,
+            "updated_utc": utc_now().isoformat(),
+        },
+    )
+    try:
+        os.chmod(TOKEN_CACHE, 0o600)
+    except OSError:
+        pass
+
+
+def _is_auth_error(exc: Exception) -> bool:
+    response = getattr(exc, "response", None)
+    if response is not None and getattr(response, "status_code", None) in {401, 403}:
+        return True
+    message = str(exc).lower()
+    return any(
+        marker in message
+        for marker in ("access token", "accesstoken", "auth", "login", "session")
+    )
 
 
 def _fetch_page(
@@ -340,6 +366,7 @@ def sync_coros(dry_run: bool, prune_deleted: bool) -> Dict[str, Any]:
     coros_cfg = config.get("coros", {}) or {}
     account = str(coros_cfg.get("email") or coros_cfg.get("account") or "").strip()
     password = str(coros_cfg.get("password") or "")
+    configured_token = str(coros_cfg.get("access_token") or "").strip()
     region = str(coros_cfg.get("region") or "eu").strip().lower()
     if not account or not password:
         raise RuntimeError("COROS authentication requires coros.email and coros.password.")
@@ -357,20 +384,44 @@ def sync_coros(dry_run: bool, prune_deleted: bool) -> Dict[str, Any]:
     ensure_dir(RAW_DIR)
 
     session = requests.Session()
-    credentials = _login(session, account, password, region)
-    token = credentials["access_token"]
+    token = configured_token
+    login_performed = False
+    if not token:
+        credentials = _login(session, account, password, region)
+        token = credentials["access_token"]
+        login_performed = True
+        _save_token_cache(token)
     today = utc_now().date()
     recent_start = today - timedelta(days=recent_days)
-    recent = _sync_pages(
-        session,
-        token,
-        region,
-        per_page,
-        after,
-        dry_run,
-        start_day=recent_start.isoformat() if recent_days else today.isoformat(),
-        end_day=today.isoformat(),
-    )
+    try:
+        recent = _sync_pages(
+            session,
+            token,
+            region,
+            per_page,
+            after,
+            dry_run,
+            start_day=recent_start.isoformat() if recent_days else today.isoformat(),
+            end_day=today.isoformat(),
+        )
+    except Exception as exc:
+        if not configured_token or not _is_auth_error(exc):
+            raise
+        print("Cached COROS access token was rejected; logging in again.")
+        credentials = _login(session, account, password, region)
+        token = credentials["access_token"]
+        login_performed = True
+        _save_token_cache(token)
+        recent = _sync_pages(
+            session,
+            token,
+            region,
+            per_page,
+            after,
+            dry_run,
+            start_day=recent_start.isoformat() if recent_days else today.isoformat(),
+            end_day=today.isoformat(),
+        )
 
     state = _load_state() if resume_backfill and not dry_run else {}
     if state.get("after") != after or state.get("activity_scope") != scope:
@@ -427,6 +478,7 @@ def sync_coros(dry_run: bool, prune_deleted: bool) -> Dict[str, Any]:
     summary = {
         "source": "coros",
         "region": region,
+        "login_performed": login_performed,
         "fetched": recent["fetched"] + backfill["fetched"],
         "new_or_updated": recent["new_or_updated"] + backfill["new_or_updated"],
         "deleted": deleted,

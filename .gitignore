@@ -2,6 +2,7 @@
 config.local.yaml
 .strava_token.json
 .garmin_token_store
+.coros_token.json
 
 # Python
 .venv/

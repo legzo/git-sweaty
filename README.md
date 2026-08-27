@@ -199,6 +199,13 @@ required by the Training Hub client.
 1. Add `COROS_EMAIL` and `COROS_PASSWORD`.
 2. Add the `COROS_REGION` repository variable: `eu`, `us`, or `cn`.
 3. Keep the default `eu` when the account uses `t.coros.com` in Europe.
+4. Add `COROS_SECRET_UPDATE_TOKEN`, a GitHub token with permission to update
+   repository secrets. An existing Strava or Garmin secret update token is also
+   used as a fallback.
+
+The first sync stores the Training Hub token in `COROS_ACCESS_TOKEN`. Later
+syncs reuse it and only perform a password login when COROS rejects it. This
+reduces browser disconnections caused by COROS single-session authentication.
 
 ### 3) Run the first sync and deploy
 

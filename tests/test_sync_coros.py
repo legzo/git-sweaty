@@ -10,6 +10,10 @@ SCRIPTS_DIR = os.path.join(ROOT_DIR, "scripts")
 if SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, SCRIPTS_DIR)
 
+yaml_stub = types.ModuleType("yaml")
+yaml_stub.safe_load = lambda *_args, **_kwargs: {}
+sys.modules.setdefault("yaml", yaml_stub)
+
 requests_stub = types.ModuleType("requests")
 
 
@@ -147,6 +151,74 @@ class SyncCorosTests(unittest.TestCase):
     def test_region_rejects_unknown_value(self) -> None:
         with self.assertRaisesRegex(ValueError, "Unsupported COROS region"):
             sync_coros._base_url("au")
+
+    def test_sync_reuses_configured_access_token_without_login(self) -> None:
+        page_result = {
+            "fetched": 0,
+            "new_or_updated": 0,
+            "activity_ids": [],
+            "next_page": 1,
+            "exhausted": True,
+        }
+        config = {
+            "coros": {
+                "email": "runner@example.com",
+                "password": "secret",
+                "access_token": "cached-token",
+                "region": "eu",
+            },
+            "sync": {"recent_days": 7},
+        }
+        with (
+            mock.patch("sync_coros.load_config", return_value=config),
+            mock.patch("sync_coros.requests.Session", return_value=object(), create=True),
+            mock.patch("sync_coros._sync_pages", return_value=page_result),
+            mock.patch("sync_coros._login") as login_mock,
+            mock.patch("sync_coros._save_token_cache") as save_mock,
+            mock.patch("sync_coros.ensure_dir"),
+        ):
+            summary = sync_coros.sync_coros(dry_run=True, prune_deleted=False)
+
+        self.assertFalse(summary["login_performed"])
+        login_mock.assert_not_called()
+        save_mock.assert_not_called()
+
+    def test_sync_relogs_only_when_cached_token_is_rejected(self) -> None:
+        page_result = {
+            "fetched": 0,
+            "new_or_updated": 0,
+            "activity_ids": [],
+            "next_page": 1,
+            "exhausted": True,
+        }
+        config = {
+            "coros": {
+                "email": "runner@example.com",
+                "password": "secret",
+                "access_token": "expired-token",
+                "region": "eu",
+            },
+            "sync": {"recent_days": 7},
+        }
+        with (
+            mock.patch("sync_coros.load_config", return_value=config),
+            mock.patch("sync_coros.requests.Session", return_value=object(), create=True),
+            mock.patch(
+                "sync_coros._sync_pages",
+                side_effect=[RuntimeError("invalid access token"), page_result, page_result],
+            ),
+            mock.patch(
+                "sync_coros._login",
+                return_value={"access_token": "new-token", "user_id": "42"},
+            ) as login_mock,
+            mock.patch("sync_coros._save_token_cache") as save_mock,
+            mock.patch("sync_coros.ensure_dir"),
+        ):
+            summary = sync_coros.sync_coros(dry_run=True, prune_deleted=False)
+
+        self.assertTrue(summary["login_performed"])
+        login_mock.assert_called_once()
+        save_mock.assert_called_once_with("new-token")
 
 
 if __name__ == "__main__":

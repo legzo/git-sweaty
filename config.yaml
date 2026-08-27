@@ -19,6 +19,7 @@ garmin:
 coros:
   email: ""
   password: ""
+  access_token: ""
   region: "eu" # "eu", "us", or "cn"
 
 sync:

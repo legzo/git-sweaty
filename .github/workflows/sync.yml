@@ -81,6 +81,7 @@ jobs:
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
           COROS_EMAIL: ${{ secrets.COROS_EMAIL }}
           COROS_PASSWORD: ${{ secrets.COROS_PASSWORD }}
+          COROS_ACCESS_TOKEN: ${{ secrets.COROS_ACCESS_TOKEN }}
         run: |
           missing=()
 
@@ -120,6 +121,7 @@ jobs:
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
           COROS_EMAIL: ${{ secrets.COROS_EMAIL }}
           COROS_PASSWORD: ${{ secrets.COROS_PASSWORD }}
+          COROS_ACCESS_TOKEN: ${{ secrets.COROS_ACCESS_TOKEN }}
           COROS_REGION: ${{ vars.COROS_REGION }}
           DASHBOARD_DISTANCE_UNIT: ${{ vars.DASHBOARD_DISTANCE_UNIT }}
           DASHBOARD_ELEVATION_UNIT: ${{ vars.DASHBOARD_ELEVATION_UNIT }}
@@ -162,6 +164,7 @@ jobs:
           coros:
             email: "${COROS_EMAIL}"
             password: "${COROS_PASSWORD}"
+            access_token: "${COROS_ACCESS_TOKEN}"
             region: "${COROS_REGION:-eu}"
           CONFIG
           fi
@@ -399,6 +402,42 @@ jobs:
             echo "Updated GARMIN_TOKENS_B64 from refreshed Garmin token store."
           else
             echo "::warning::Failed to update GARMIN_TOKENS_B64 automatically. Update it manually."
+          fi
+
+      - name: Rotate COROS access token (optional)
+        env:
+          SYNC_SOURCE: ${{ env.SYNC_SOURCE }}
+          COROS_ACCESS_TOKEN: ${{ secrets.COROS_ACCESS_TOKEN }}
+          COROS_SECRET_UPDATE_TOKEN: ${{ secrets.COROS_SECRET_UPDATE_TOKEN || secrets.STRAVA_SECRET_UPDATE_TOKEN || secrets.GARMIN_SECRET_UPDATE_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ "${SYNC_SOURCE}" != "coros" ]]; then
+            echo "Skipping COROS token rotation: source=${SYNC_SOURCE}."
+            exit 0
+          fi
+          if [[ ! -f ".coros_token.json" ]]; then
+            echo "Cached COROS token remained valid; no rotation needed."
+            exit 0
+          fi
+
+          new_access_token="$(python -c 'import json; payload=json.load(open(".coros_token.json","r",encoding="utf-8")); value=payload.get("access_token"); print(value if isinstance(value,str) else "")' 2>/dev/null || true)"
+          if [[ -z "${new_access_token}" ]]; then
+            echo "::warning::COROS login produced no reusable access token."
+            exit 0
+          fi
+          if [[ "${new_access_token}" == "${COROS_ACCESS_TOKEN}" ]]; then
+            echo "COROS access token unchanged."
+            exit 0
+          fi
+          if [[ -z "${COROS_SECRET_UPDATE_TOKEN}" ]]; then
+            echo "::warning::COROS access token changed, but no secret update token is configured. Set COROS_ACCESS_TOKEN manually or add COROS_SECRET_UPDATE_TOKEN."
+            exit 0
+          fi
+
+          if printf '%s' "${new_access_token}" | GH_TOKEN="${COROS_SECRET_UPDATE_TOKEN}" gh secret set COROS_ACCESS_TOKEN --repo "${GITHUB_REPOSITORY}"; then
+            echo "Updated COROS_ACCESS_TOKEN after COROS login."
+          else
+            echo "::warning::Failed to update COROS_ACCESS_TOKEN automatically."
           fi
 
       - name: Commit README link update
