@@ -4,7 +4,7 @@ Bootstrap activity-provider auth and GitHub setup for this repository.
 
 This script performs:
 0) Optional local virtualenv bootstrap (.venv + requirements install).
-1) Provider-specific auth/bootstrap (Strava OAuth or Garmin credentials).
+1) Provider-specific auth/bootstrap (Strava OAuth, Garmin, or COROS credentials).
 2) GitHub secret + variable updates via gh CLI.
 3) Best-effort GitHub setup automation (workflows, pages, first run).
 """
@@ -87,6 +87,7 @@ STRAVA_REQUIRED_SECRET_NAMES = {
 }
 GARMIN_PRIMARY_SECRET_NAMES = {"GARMIN_TOKENS_B64"}
 GARMIN_FALLBACK_SECRET_NAMES = {"GARMIN_EMAIL", "GARMIN_PASSWORD"}
+COROS_REQUIRED_SECRET_NAMES = {"COROS_EMAIL", "COROS_PASSWORD"}
 
 
 @dataclass
@@ -591,7 +592,7 @@ def _existing_dashboard_source(repo: str) -> Optional[str]:
     if not value:
         return None
     normalized = value.strip().lower()
-    if normalized in {"strava", "garmin"}:
+    if normalized in {"strava", "garmin", "coros"}:
         return normalized
     return None
 
@@ -755,6 +756,8 @@ def _has_required_source_secrets(source: str, secret_names: set[str]) -> bool:
         has_primary = GARMIN_PRIMARY_SECRET_NAMES.issubset(secret_names)
         has_fallback = GARMIN_FALLBACK_SECRET_NAMES.issubset(secret_names)
         return has_primary or has_fallback
+    if normalized_source == "coros":
+        return COROS_REQUIRED_SECRET_NAMES.issubset(secret_names)
     return False
 
 
@@ -789,6 +792,7 @@ def _has_explicit_setup_overrides(args: argparse.Namespace) -> bool:
             "strava_activity_links",
             "garmin_profile_url",
             "garmin_activity_links",
+            "coros_region",
         )
     )
 
@@ -803,6 +807,8 @@ def _has_explicit_credentials_for_source(args: argparse.Namespace, source: str) 
             or getattr(args, "garmin_email", None)
             or getattr(args, "garmin_password", None)
         )
+    if normalized_source == "coros":
+        return bool(getattr(args, "coros_email", None) or getattr(args, "coros_password", None))
     return False
 
 
@@ -1097,11 +1103,12 @@ def _prompt_source() -> str:
     print("\nChoose activity source:")
     print("  1) Strava")
     print("  2) Garmin")
+    print("  3) COROS Training Hub (unofficial API)")
     selected = _prompt_choice(
-        "Selection (enter 1 or 2): ",
-        {"1": "strava", "2": "garmin"},
+        "Selection (enter 1, 2, or 3): ",
+        {"1": "strava", "2": "garmin", "3": "coros"},
         default=None,
-        invalid_message="Please enter '1' or '2'.",
+        invalid_message="Please enter '1', '2', or '3'.",
     )
     return selected
 
@@ -1115,7 +1122,7 @@ def _resolve_source(
         return args.source
     if interactive:
         return _prompt_source()
-    if previous_source in {"strava", "garmin"}:
+    if previous_source in {"strava", "garmin", "coros"}:
         return previous_source
     return DEFAULT_SOURCE
 
@@ -2684,7 +2691,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--source",
-        choices=["strava", "garmin"],
+        choices=["strava", "garmin", "coros"],
         default=None,
         help="Activity source to configure.",
     )
@@ -2723,6 +2730,14 @@ def parse_args() -> argparse.Namespace:
         "--store-garmin-password-secrets",
         action="store_true",
         help="Deprecated: GARMIN_EMAIL and GARMIN_PASSWORD are now stored automatically when provided.",
+    )
+    parser.add_argument("--coros-email", default=None, help="COROS account email.")
+    parser.add_argument("--coros-password", default=None, help="COROS account password.")
+    parser.add_argument(
+        "--coros-region",
+        choices=["eu", "us", "cn"],
+        default=None,
+        help="COROS Training Hub account region (default: eu).",
     )
     parser.add_argument(
         "--repo",
@@ -3017,6 +3032,20 @@ def main() -> int:
             prefilled_url=garmin_profile_url_prefilled,
             prompt_if_missing=False if garmin_profile_link_enabled_override is not None else True,
         )
+    elif source == "coros":
+        if update_credentials:
+            if not interactive and (not args.coros_email or not args.coros_password):
+                raise RuntimeError(
+                    "Missing COROS credentials in non-interactive mode. "
+                    "Provide --coros-email and --coros-password."
+                )
+            coros_email = _prompt(args.coros_email, "COROS_EMAIL")
+            coros_password = _prompt(args.coros_password, "COROS_PASSWORD", secret=True)
+            if not coros_email or not coros_password:
+                raise RuntimeError("COROS_EMAIL and COROS_PASSWORD are required.")
+            _set_secret("COROS_EMAIL", coros_email, repo)
+            _set_secret("COROS_PASSWORD", coros_password, repo)
+            configured_secret_names.extend(["COROS_EMAIL", "COROS_PASSWORD"])
     else:
         raise RuntimeError(f"Unsupported source: {source}")
 
@@ -3069,6 +3098,9 @@ def main() -> int:
         ("DASHBOARD_ELEVATION_UNIT", elevation_unit),
         ("DASHBOARD_WEEK_START", week_start),
     ]
+    if source == "coros":
+        coros_region = args.coros_region or _get_variable("COROS_REGION", repo) or "eu"
+        variable_pairs.append(("COROS_REGION", coros_region))
     if source == "strava":
         variable_pairs.append(("DASHBOARD_STRAVA_PROFILE_URL", strava_profile_url))
         variable_pairs.append(

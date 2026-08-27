@@ -95,6 +95,7 @@ def _normalize_activity(activity: Dict, type_aliases: Dict[str, str], source: st
         "distance": _safe_float(distance),
         "moving_time": _safe_float(moving_time),
         "elevation_gain": _safe_float(elevation_gain),
+        "provider": source,
     }
     if activity_name:
         normalized["name"] = activity_name

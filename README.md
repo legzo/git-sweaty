@@ -10,7 +10,7 @@
 
 # Workout --> Interactive Dashboard
 
-Turn your Strava and Garmin activities into GitHub-style contribution graphs. Automatically generate a free, interactive dashboard updated daily on GitHub Pages.  
+Turn your Strava, Garmin, and COROS activities into GitHub-style contribution graphs. Automatically generate a free, interactive dashboard updated daily on GitHub Pages.
 
 **No coding required.**  
 
@@ -57,7 +57,7 @@ You will be prompted for:
   - Advanced (Local clone + git remotes): setup script will prefer an existing compatible local clone when available, or guide fork-and-clone setup, then complete the rest of the setup.
   - Manual (No setup scripts): follow [Manual Setup (No Scripts)](#manual-setup-no-scripts)
 - GitHub Pages custom domain (if you have one, for example `yoursite.example.com`)
-- Source (`strava` or `garmin`)
+- Source (`strava`, `garmin`, or `coros`)
 - Unit preference (`US` or `Metric`)
 - Heatmap week start (`Sunday` or `Monday`)
 - Optional profile link in the dashboard header for the selected source (`Yes` or `No`)
@@ -66,6 +66,7 @@ You will be prompted for:
   - Strava: prompt will provide a link to create a [Strava API application](https://www.strava.com/settings/api) first, set Authorization Callback Domain to `localhost`.
     - Then paste the `client_id` + `client_secret` values in the prompt, then a browser tab will open for OAuth approval
   - Garmin: account email + password
+  - COROS: Training Hub account email + password and account region
 
 The setup may take several minutes to complete when run for the first time. If any automation step fails, the script prints steps to remedy the failed step.  
 Once the script succeeds, it will provide the URL for your dashboard.
@@ -83,10 +84,22 @@ Once the script succeeds, it will provide the URL for your dashboard.
 
 ## Switching Sources Later
 
-You can switch between `strava` and `garmin` at any time.
+You can switch between `strava`, `garmin`, and `coros` at any time.
 
 - Re-run `./scripts/bootstrap.sh` (or the quickstart curl command) and choose a different source.
-- If you re-run setup and choose the same source, setup asks whether to force a one-time full backfill. You can also update your response for unit preference, day of week start, placing strava/garmin profle link on your dashboard, and whether you'd like activity links in the tooltips.
+- If you re-run setup and choose the same source, setup asks whether to force a one-time full backfill. You can also update units and the first day of the week. Strava and Garmin additionally support profile and activity links.
+
+To keep historical data from the previous provider and use the new provider
+only from a transition date, configure:
+
+```yaml
+sync:
+  start_date: "2026-07-01"
+  preserve_history_before_start_date: true
+```
+
+Do not select the workflow's full-backfill option during the first transition
+run because that option intentionally removes the persisted history first.
 
 ---
 
@@ -96,8 +109,8 @@ You can switch between `strava` and `garmin` at any time.
 - To click activity urls while viewing on desktop, click the graph dot to freeze the tooltip in place.
 - If a day contains multiple activity types, that day’s colored square is split into equal segments — one per unique activity type on that day.
 - Raw activities are stored locally for processing but are not committed (`activities/raw/` is ignored). This prevents publishing detailed per-activity payloads and GPS location traces.
-- If neither `sync.start_date` nor `sync.lookback_years` is set, the sync workflow backfills all available history from the selected source (i.e. Strava/Garmin).
-- Strava backfill state is stored in `data/backfill_state_strava.json`; Garmin backfill state is stored in `data/backfill_state_garmin.json`. If a backfill hits API limits (unlikely), this state allows the daily refresh automation to pick back up where it left off.
+- If neither `sync.start_date` nor `sync.lookback_years` is set, the sync workflow backfills all available history from the selected source.
+- Provider backfill state is stored in `data/backfill_state_<provider>.json`. This state allows the daily refresh automation to resume an interrupted backfill.
 - The Sync action workflow includes a toggle labeled `Reset backfill cursor and re-fetch full history for the selected source` which forces a one-time full backfill. This is useful if you add/delete/modify activities which have already been loaded.
 
 ---
@@ -106,7 +119,7 @@ You can switch between `strava` and `garmin` at any time.
 
 Use this if you do not want to run `bootstrap.sh` or `setup_auth.py`.
 
-### 1) Shared steps (Strava + Garmin)
+### 1) Shared steps (Strava + Garmin + COROS)
 
 1. Fork this repository on GitHub.
 2. In your fork, keep `main` current with upstream using **Sync fork**.
@@ -116,7 +129,7 @@ Use this if you do not want to run `bootstrap.sh` or `setup_auth.py`.
    - `Settings` -> `Pages` -> `Source` -> `GitHub Actions`
 5. In your fork, add these repository variables:
    - `Settings` -> `Secrets and variables` -> `Actions` -> `Variables`
-   - `DASHBOARD_SOURCE`: `strava` or `garmin`
+   - `DASHBOARD_SOURCE`: `strava`, `garmin`, or `coros`
    - `DASHBOARD_REPO`: your fork slug (example: `yourname/git-sweaty`)
    - `DASHBOARD_DISTANCE_UNIT`: `mi` or `km`
    - `DASHBOARD_ELEVATION_UNIT`: `ft` or `m`
@@ -177,11 +190,21 @@ Optional but recommended for automatic Garmin token rotation:
 - Add `GARMIN_SECRET_UPDATE_TOKEN` (a GitHub token with repo write access to this fork). Setup attempts to configure this automatically from your current `gh` auth session.
 - Keep `GARMIN_EMAIL` and `GARMIN_PASSWORD` configured as a recovery path. If the saved token archive is malformed or can no longer be reused, the scheduled workflow can sign in, regenerate it, and rotate `GARMIN_TOKENS_B64` automatically.
 
+#### COROS secrets
+
+The COROS connector uses the unofficial Training Hub API. It may stop working if
+COROS changes that private API, and it sends an MD5 digest of the password as
+required by the Training Hub client.
+
+1. Add `COROS_EMAIL` and `COROS_PASSWORD`.
+2. Add the `COROS_REGION` repository variable: `eu`, `us`, or `cn`.
+3. Keep the default `eu` when the account uses `t.coros.com` in Europe.
+
 ### 3) Run the first sync and deploy
 
 1. Go to `Actions` -> `Sync Heatmaps`.
 2. Click `Run workflow` on the `main` branch.
-3. Optional: set `source` explicitly (`strava` or `garmin`) when running manually.
+3. Optional: set `source` explicitly (`strava`, `garmin`, or `coros`) when running manually.
 4. Wait for `Sync Heatmaps` to complete successfully.
 5. Confirm `Deploy Pages` runs (automatically after a successful sync).
 6. Open your dashboard at:

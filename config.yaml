@@ -1,5 +1,5 @@
 # Base configuration. Put secrets in config.local.yaml (ignored by git).
-source: "strava"  # "strava" or "garmin"
+source: "strava"  # "strava", "garmin", or "coros"
 
 strava:
   client_id: ""
@@ -16,10 +16,17 @@ garmin:
   include_activity_urls: false # when true, tooltip details can show links to individual Garmin activities
   strict_token_only: false # when true, only token_store_b64 is used (no email/password fallback)
 
+coros:
+  email: ""
+  password: ""
+  region: "eu" # "eu", "us", or "cn"
+
 sync:
   # Optional history limits:
   # start_date: "2019-01-01" # YYYY-MM-DD lower bound
   # lookback_years: 5        # ignored when start_date is set
+  # preserve_history_before_start_date: false
+  # Keep normalized activities before start_date when changing provider.
   recent_days: 7
   resume_backfill: true
   per_page: 200
