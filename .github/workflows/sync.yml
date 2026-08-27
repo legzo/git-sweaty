@@ -12,6 +12,7 @@ on:
         options:
           - strava
           - garmin
+          - coros
         default: strava
       update_readme_link:
         description: "Update README dashboard URL in this fork"
@@ -62,8 +63,8 @@ jobs:
         run: |
           source="${WORKFLOW_SOURCE:-${DASHBOARD_SOURCE:-strava}}"
           source="$(echo "${source}" | tr '[:upper:]' '[:lower:]' | xargs)"
-          if [[ "${source}" != "strava" && "${source}" != "garmin" ]]; then
-            echo "Unsupported source '${source}'. Expected strava or garmin."
+          if [[ "${source}" != "strava" && "${source}" != "garmin" && "${source}" != "coros" ]]; then
+            echo "Unsupported source '${source}'. Expected strava, garmin, or coros."
             exit 1
           fi
           echo "SYNC_SOURCE=${source}" >> "$GITHUB_ENV"
@@ -78,6 +79,8 @@ jobs:
           GARMIN_TOKENS_B64: ${{ secrets.GARMIN_TOKENS_B64 }}
           GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+          COROS_EMAIL: ${{ secrets.COROS_EMAIL }}
+          COROS_PASSWORD: ${{ secrets.COROS_PASSWORD }}
         run: |
           missing=()
 
@@ -89,8 +92,11 @@ jobs:
             if [[ -z "$GARMIN_TOKENS_B64" && ( -z "$GARMIN_EMAIL" || -z "$GARMIN_PASSWORD" ) ]]; then
               missing+=("GARMIN_TOKENS_B64 or GARMIN_EMAIL+GARMIN_PASSWORD")
             fi
+          elif [[ "${SYNC_SOURCE}" == "coros" ]]; then
+            [[ -n "$COROS_EMAIL" ]] || missing+=("COROS_EMAIL")
+            [[ -n "$COROS_PASSWORD" ]] || missing+=("COROS_PASSWORD")
           else
-            missing+=("SYNC_SOURCE must be strava or garmin")
+            missing+=("SYNC_SOURCE must be strava, garmin, or coros")
           fi
 
           if [ ${#missing[@]} -gt 0 ]; then
@@ -112,6 +118,9 @@ jobs:
           GARMIN_TOKENS_B64: ${{ secrets.GARMIN_TOKENS_B64 }}
           GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+          COROS_EMAIL: ${{ secrets.COROS_EMAIL }}
+          COROS_PASSWORD: ${{ secrets.COROS_PASSWORD }}
+          COROS_REGION: ${{ vars.COROS_REGION }}
           DASHBOARD_DISTANCE_UNIT: ${{ vars.DASHBOARD_DISTANCE_UNIT }}
           DASHBOARD_ELEVATION_UNIT: ${{ vars.DASHBOARD_ELEVATION_UNIT }}
           DASHBOARD_WEEK_START: ${{ vars.DASHBOARD_WEEK_START }}
@@ -134,7 +143,7 @@ jobs:
             if [[ "${normalized_links_value}" == "1" || "${normalized_links_value}" == "true" || "${normalized_links_value}" == "yes" || "${normalized_links_value}" == "y" || "${normalized_links_value}" == "on" ]]; then
               echo "  include_activity_urls: true" >> config.local.yaml
             fi
-          else
+          elif [[ "${SYNC_SOURCE}" == "garmin" ]]; then
             cat <<CONFIG >> config.local.yaml
           garmin:
             token_store_b64: "${GARMIN_TOKENS_B64}"
@@ -148,6 +157,13 @@ jobs:
             if [[ "${normalized_links_value}" == "1" || "${normalized_links_value}" == "true" || "${normalized_links_value}" == "yes" || "${normalized_links_value}" == "y" || "${normalized_links_value}" == "on" ]]; then
               echo "  include_activity_urls: true" >> config.local.yaml
             fi
+          else
+            cat <<CONFIG >> config.local.yaml
+          coros:
+            email: "${COROS_EMAIL}"
+            password: "${COROS_PASSWORD}"
+            region: "${COROS_REGION:-eu}"
+          CONFIG
           fi
 
           if [[ -n "${DASHBOARD_DISTANCE_UNIT}" || -n "${DASHBOARD_ELEVATION_UNIT}" ]]; then
@@ -211,6 +227,7 @@ jobs:
             rm -f data/backfill_state.json
             rm -f data/backfill_state_strava.json
             rm -f data/backfill_state_garmin.json
+            rm -f data/backfill_state_coros.json
             rm -f data/last_sync_summary.json
             rm -f data/last_sync_summary.txt
             rm -f data/source_state.json

@@ -506,6 +506,7 @@ function syncStravaProfileLink(profileUrl, source) {
 
 function providerDisplayName(source) {
   const normalized = String(source || "").trim().toLowerCase();
+  if (normalized === "coros") return "COROS";
   if (normalized === "garmin") return "Garmin";
   if (normalized === "strava") return "Strava";
   return "";

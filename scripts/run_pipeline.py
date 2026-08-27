@@ -4,7 +4,8 @@ import os
 import re
 import subprocess
 import urllib.request
-from typing import Optional
+from datetime import datetime
+from typing import Any, Dict, List, Optional
 
 from aggregate import aggregate as aggregate_func
 from normalize import normalize as normalize_func
@@ -15,8 +16,9 @@ from repo_helpers import (
     pages_url_from_slug,
 )
 from sync_garmin import sync_garmin
+from sync_coros import sync_coros
 from sync_strava import sync_strava
-from utils import ensure_dir, load_config, normalize_source, write_json
+from utils import ensure_dir, load_config, normalize_source, read_json, write_json
 from generate_heatmaps import generate as generate_heatmaps
 
 README_MD = "README.md"
@@ -33,17 +35,21 @@ RESETTABLE_STATE_FILES = [
     os.path.join("data", "backfill_state.json"),
     os.path.join("data", "backfill_state_strava.json"),
     os.path.join("data", "backfill_state_garmin.json"),
+    os.path.join("data", "backfill_state_coros.json"),
     os.path.join("data", "athletes.json"),
     os.path.join("data", "athletes_strava.json"),
     os.path.join("data", "athletes_garmin.json"),
+    os.path.join("data", "athletes_coros.json"),
 ]
 RESETTABLE_RAW_DIRS = [
     os.path.join("activities", "raw"),
     os.path.join("activities", "raw", "strava"),
     os.path.join("activities", "raw", "garmin"),
+    os.path.join("activities", "raw", "coros"),
 ]
 SOURCE_HINT_STRAVA = "strava"
 SOURCE_HINT_GARMIN = "garmin"
+SOURCE_HINT_COROS = "coros"
 SOURCE_HINT_MIXED = "mixed"
 README_LIVE_SITE_RE = re.compile(
     r"(?im)^([ \t]*(?:-\s*)?(?:Live site:\s*\[Interactive Heatmaps\]|View the Interactive \[Activity Dashboard\])\()https?://[^)]+(\)[ \t]*\.?[ \t]*)$",
@@ -188,26 +194,61 @@ def _clear_state_for_source_switch() -> None:
             shutil.rmtree(path)
 
 
-def _reset_for_source_switch() -> None:
+def _preserved_history(config: Dict[str, Any]) -> Optional[List[Dict[str, Any]]]:
+    sync_cfg = config.get("sync", {}) or {}
+    if not bool(sync_cfg.get("preserve_history_before_start_date", False)):
+        return None
+    start_date = str(sync_cfg.get("start_date") or "").strip()
+    if not start_date:
+        raise ValueError(
+            "sync.preserve_history_before_start_date requires sync.start_date."
+        )
+    datetime.strptime(start_date, "%Y-%m-%d")
+    path = os.path.join("data", "activities_normalized.json")
+    if not os.path.exists(path):
+        return []
+    payload = read_json(path)
+    if not isinstance(payload, list):
+        raise ValueError(f"{path} must contain a JSON array.")
+    return [
+        item
+        for item in payload
+        if isinstance(item, dict) and str(item.get("date") or "") < start_date
+    ]
+
+
+def _reset_for_source_switch(
+    preserved_items: Optional[List[Dict[str, Any]]] = None,
+) -> None:
     _clear_outputs_for_source_switch()
     _clear_state_for_source_switch()
+    if preserved_items is not None:
+        _write_normalized(preserved_items)
 
 
 def _detect_persisted_source_hint() -> Optional[str]:
     has_strava_state = os.path.exists(os.path.join("data", "backfill_state_strava.json"))
     has_garmin_state = os.path.exists(os.path.join("data", "backfill_state_garmin.json"))
+    has_coros_state = os.path.exists(os.path.join("data", "backfill_state_coros.json"))
     has_strava_raw = os.path.isdir(os.path.join("activities", "raw", "strava"))
     has_garmin_raw = os.path.isdir(os.path.join("activities", "raw", "garmin"))
+    has_coros_raw = os.path.isdir(os.path.join("activities", "raw", "coros"))
 
     has_strava = has_strava_state or has_strava_raw
     has_garmin = has_garmin_state or has_garmin_raw
-    if has_strava and has_garmin:
+    has_coros = has_coros_state or has_coros_raw
+    detected = [
+        source
+        for source, present in (
+            (SOURCE_HINT_STRAVA, has_strava),
+            (SOURCE_HINT_GARMIN, has_garmin),
+            (SOURCE_HINT_COROS, has_coros),
+        )
+        if present
+    ]
+    if len(detected) > 1:
         return SOURCE_HINT_MIXED
-    if has_strava:
-        return SOURCE_HINT_STRAVA
-    if has_garmin:
-        return SOURCE_HINT_GARMIN
-    return None
+    return detected[0] if detected else None
 
 
 def _sync_for_source(source: str, dry_run: bool, prune_deleted: bool):
@@ -215,6 +256,8 @@ def _sync_for_source(source: str, dry_run: bool, prune_deleted: bool):
         return sync_strava(dry_run=dry_run, prune_deleted=prune_deleted)
     if source == "garmin":
         return sync_garmin(dry_run=dry_run, prune_deleted=prune_deleted)
+    if source == "coros":
+        return sync_coros(dry_run=dry_run, prune_deleted=prune_deleted)
     raise ValueError(f"Unsupported source '{source}'")
 
 
@@ -227,12 +270,20 @@ def run_pipeline(
     config = load_config()
     source = normalize_source(config.get("source", "strava"))
     previous_source = _load_last_source()
+    preserved_items = _preserved_history(config)
     if previous_source and previous_source != source:
-        print(
-            f"Source changed from {previous_source} to {source}; "
-            "resetting persisted outputs, backfill state, and raw caches for a full fresh sync."
-        )
-        _reset_for_source_switch()
+        if preserved_items is not None:
+            start_date = str((config.get("sync", {}) or {}).get("start_date"))
+            print(
+                f"Source changed from {previous_source} to {source}; preserving "
+                f"{len(preserved_items)} activities before {start_date}."
+            )
+        else:
+            print(
+                f"Source changed from {previous_source} to {source}; "
+                "resetting persisted outputs, backfill state, and raw caches for a full fresh sync."
+            )
+        _reset_for_source_switch(preserved_items)
     elif (
         previous_source is None
         and os.path.exists(os.path.join("data", "activities_normalized.json"))
@@ -241,7 +292,7 @@ def run_pipeline(
         should_reset = False
         if source_hint == SOURCE_HINT_MIXED:
             print(
-                "No saved source marker found and both Strava and Garmin persisted state were detected; "
+                "No saved source marker found and multiple providers' persisted state was detected; "
                 "resetting persisted outputs, backfill state, and raw caches to avoid mixed-source history."
             )
             should_reset = True
@@ -259,7 +310,7 @@ def run_pipeline(
             should_reset = True
 
         if should_reset:
-            _reset_for_source_switch()
+            _reset_for_source_switch(preserved_items)
 
     if not skip_sync:
         summary = _sync_for_source(source, dry_run=dry_run, prune_deleted=prune_deleted)

@@ -42,9 +42,17 @@ import run_pipeline  # noqa: E402
 
 
 class RunPipelineSourceSwitchTests(unittest.TestCase):
-    def _run_pipeline_with_mocks(self, source: str, previous_source: Optional[str]) -> mock.Mock:
+    def _run_pipeline_with_mocks(
+        self,
+        source: str,
+        previous_source: Optional[str],
+        config_override=None,
+    ) -> mock.Mock:
+        config = {"source": source}
+        if config_override:
+            config.update(config_override)
         with (
-            mock.patch("run_pipeline.load_config", return_value={"source": source}),
+            mock.patch("run_pipeline.load_config", return_value=config),
             mock.patch("run_pipeline._load_last_source", return_value=previous_source),
             mock.patch("run_pipeline._reset_for_source_switch") as reset_mock,
             mock.patch("run_pipeline._sync_for_source", return_value={"ok": True}),
@@ -71,6 +79,48 @@ class RunPipelineSourceSwitchTests(unittest.TestCase):
     def test_run_pipeline_does_not_reset_when_source_is_unchanged(self) -> None:
         reset_mock = self._run_pipeline_with_mocks(source="strava", previous_source="strava")
         reset_mock.assert_not_called()
+
+    def test_source_switch_preserves_history_before_start_date(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            data_dir = os.path.join(tmpdir, "data")
+            os.makedirs(data_dir)
+            with open(
+                os.path.join(data_dir, "activities_normalized.json"),
+                "w",
+                encoding="utf-8",
+            ) as handle:
+                handle.write(
+                    '[{"id":"old","date":"2026-06-30"},'
+                    '{"id":"cutover","date":"2026-07-01"}]\n'
+                )
+            previous_cwd = os.getcwd()
+            os.chdir(tmpdir)
+            try:
+                preserved = run_pipeline._preserved_history(
+                    {
+                        "sync": {
+                            "start_date": "2026-07-01",
+                            "preserve_history_before_start_date": True,
+                        }
+                    }
+                )
+            finally:
+                os.chdir(previous_cwd)
+
+        self.assertEqual(preserved, [{"id": "old", "date": "2026-06-30"}])
+
+    def test_preservation_requires_start_date(self) -> None:
+        with self.assertRaisesRegex(ValueError, "requires sync.start_date"):
+            run_pipeline._preserved_history(
+                {"sync": {"preserve_history_before_start_date": True}}
+            )
+
+    def test_pipeline_dispatches_coros_sync(self) -> None:
+        with mock.patch("run_pipeline.sync_coros", return_value={"source": "coros"}) as sync_mock:
+            result = run_pipeline._sync_for_source("coros", dry_run=True, prune_deleted=False)
+
+        self.assertEqual(result, {"source": "coros"})
+        sync_mock.assert_called_once_with(dry_run=True, prune_deleted=False)
 
     def test_run_pipeline_resets_when_missing_source_marker_conflicts_with_persisted_hint(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
