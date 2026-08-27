@@ -97,6 +97,9 @@ def _normalize_activity(activity: Dict, type_aliases: Dict[str, str], source: st
         "elevation_gain": _safe_float(elevation_gain),
         "provider": source,
     }
+    provider_sport_type = activity.get("provider_sport_type")
+    if provider_sport_type not in (None, ""):
+        normalized["provider_sport_type"] = provider_sport_type
     if activity_name:
         normalized["name"] = activity_name
     return normalized

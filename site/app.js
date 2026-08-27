@@ -461,7 +461,8 @@ function parseStravaActivityUrl(value) {
   const host = String(parsed.hostname || "").toLowerCase();
   const isStravaHost = host === "strava.com" || host.endsWith(".strava.com");
   const isGarminHost = host === "connect.garmin.com" || host.endsWith(".connect.garmin.com");
-  if (!isStravaHost && !isGarminHost) {
+  const isCorosHost = host === "trainingeu.coros.com";
+  if (!isStravaHost && !isGarminHost && !isCorosHost) {
     return null;
   }
 
@@ -470,6 +471,16 @@ function parseStravaActivityUrl(value) {
     return null;
   }
   if (isGarminHost && !/^\/(?:modern\/)?activity\/[^/]+$/i.test(path)) {
+    return null;
+  }
+  if (
+    isCorosHost
+    && (
+      path !== "/activity-detail"
+      || !parsed.searchParams.get("labelId")
+      || !/^\d+$/.test(parsed.searchParams.get("sportType") || "")
+    )
+  ) {
     return null;
   }
 
@@ -2699,6 +2710,9 @@ function formatTypeBreakdownLinesWithLinks(
         return {
           href,
           name: rawName || `${typeLabel} ${index + 1}`,
+          distance: Number(entry?.distance || 0),
+          moving_time: Number(entry?.moving_time || 0),
+          elevation_gain: Number(entry?.elevation_gain || 0),
         };
       })
       .filter(Boolean);
@@ -2707,10 +2721,12 @@ function formatTypeBreakdownLinesWithLinks(
 
     if (hasSingleLinkedType) {
       const activity = linkedActivities[0];
-      lines.push(createTooltipActivityLine("", typeLabel, activity.name, activity.href));
+      lines.push(createTooltipActivityLine("", "", activity.name, activity.href));
+      lines.push(...formatTooltipMetricLines(activity, units, "- "));
     } else if (hasCompleteLinkedActivityList) {
       linkedActivities.forEach((activity) => {
-        lines.push(createTooltipActivityLine("", typeLabel, activity.name, activity.href));
+        lines.push(createTooltipActivityLine("", "", activity.name, activity.href));
+        lines.push(...formatTooltipMetricLines(activity, units, "- "));
       });
     } else {
       lines.push(createTooltipTextLine(`${typeLabel}: ${count}`));
@@ -2724,7 +2740,12 @@ function formatTypeBreakdownLinesWithLinks(
     const typeMetrics = typeMetricsByType && typeof typeMetricsByType === "object"
       ? typeMetricsByType[activityType]
       : null;
-    if (typeMetrics && typeof typeMetrics === "object") {
+    if (
+      typeMetrics
+      && typeof typeMetrics === "object"
+      && !hasSingleLinkedType
+      && !hasCompleteLinkedActivityList
+    ) {
       lines.push(...formatTooltipMetricLines(typeMetrics, units, "- "));
     }
   });
@@ -2805,6 +2826,9 @@ function buildCombinedTypeDetailsByDate(payload, types, years) {
       activityLinksByDateType[dateStr][activityType].push({
         href: parsedActivityLink.href,
         name: String(activity?.name || activity?.title || "").trim(),
+        distance: Number(activity?.distance || 0),
+        moving_time: Number(activity?.moving_time || 0),
+        elevation_gain: Number(activity?.elevation_gain || 0),
       });
     }
     if (isOtherSportsType(activityType)) {
@@ -3308,39 +3332,30 @@ function buildHeatmapArea(aggregates, year, units, colors, type, layout, options
     const typeLabels = type === "all" ? options.typeLabelsByDate?.[dateStr] : null;
     const activityLinksByType = options.activityLinksByDateType?.[dateStr] || {};
     const typeMetricsByType = options.typeMetricsByDateType?.[dateStr] || {};
-    const singleTypeLabel = type === "all"
-      ? getSingleActivityTooltipTypeLabel(typeBreakdown, entry, typeLabels)
-      : (Number(entry.count || 0) === 1 ? displayType(type) : "");
-    const shouldShowPerTypeMetrics = type === "all" && Number(entry.count || 0) > 1;
+    const tooltipBreakdown = type === "all"
+      ? typeBreakdown
+      : { typeCounts: { [type]: Number(entry.count || 0) } };
     let renderedTypeBreakdown = false;
     const lines = [createTooltipTextLine(dateStr)];
-    if (singleTypeLabel) {
-      lines.push(createSingleTooltipActivityLine(singleTypeLabel, activityLinksByType));
-    } else {
-      lines.push(createTooltipTextLine(formatActivityCountLabel(entry.count, type === "all" ? [] : [type])));
+    lines.push(createTooltipTextLine(formatActivityCountLabel(entry.count, type === "all" ? [] : [type])));
+
+    const breakdownLines = formatTypeBreakdownLinesWithLinks(
+      tooltipBreakdown,
+      type === "all" ? (options.selectedTypes || []) : [type],
+      activityLinksByType,
+      typeMetricsByType,
+      units,
+    );
+    if (breakdownLines.length) {
+      renderedTypeBreakdown = true;
+      lines.push(...breakdownLines);
+    } else if (type === "all" && Array.isArray(typeLabels) && typeLabels.length) {
+      lines.push(createTooltipTextLine(`Types: ${typeLabels.join(", ")}`));
+    } else if (type === "all" && entry.types && entry.types.length) {
+      lines.push(createTooltipTextLine(`Types: ${entry.types.map(displayType).join(", ")}`));
     }
 
-    if (type === "all") {
-      if (!singleTypeLabel) {
-        const breakdownLines = formatTypeBreakdownLinesWithLinks(
-          typeBreakdown,
-          options.selectedTypes || [],
-          activityLinksByType,
-          shouldShowPerTypeMetrics ? typeMetricsByType : null,
-          units,
-        );
-        if (breakdownLines.length) {
-          renderedTypeBreakdown = true;
-          lines.push(...breakdownLines);
-        } else if (Array.isArray(typeLabels) && typeLabels.length) {
-          lines.push(createTooltipTextLine(`Types: ${typeLabels.join(", ")}`));
-        } else if (entry.types && entry.types.length) {
-          lines.push(createTooltipTextLine(`Types: ${entry.types.map(displayType).join(", ")}`));
-        }
-      }
-    }
-
-    const showAggregateTotals = !(shouldShowPerTypeMetrics && renderedTypeBreakdown);
+    const showAggregateTotals = !renderedTypeBreakdown;
     if (showAggregateTotals) {
       lines.push(...formatTooltipMetricLines(entry, units, "- "));
     }

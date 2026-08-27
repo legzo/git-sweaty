@@ -157,7 +157,11 @@ class GenerateHeatmapsRenderContractTests(unittest.TestCase):
         self.assertEqual(len(activities), 2)
         self.assertEqual(activities[0]["hour"], 9)
         self.assertIsNone(activities[1]["hour"])
-        self.assertNotIn("url", activities[0])
+        self.assertEqual(
+            activities[0]["url"],
+            "https://www.strava.com/activities/123",
+        )
+        self.assertEqual(activities[0]["provider"], "strava")
 
     def test_load_activities_includes_strava_urls_when_enabled(self) -> None:
         rows = [
@@ -195,6 +199,7 @@ class GenerateHeatmapsRenderContractTests(unittest.TestCase):
                 "raw_type": "Run",
                 "start_date_local": "2026-02-01T09:15:00+00:00",
                 "name": "Garmin Run",
+                "provider": "garmin",
             }
         ]
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -210,6 +215,28 @@ class GenerateHeatmapsRenderContractTests(unittest.TestCase):
 
         self.assertEqual(activities[0]["url"], "https://connect.garmin.com/modern/activity/888999")
         self.assertEqual(activities[0]["name"], "Garmin Run")
+
+    def test_activity_url_uses_coros_detail_route_and_sport_type(self) -> None:
+        url = generate_heatmaps._activity_url_from_item(
+            {
+                "id": "479750864792223754",
+                "provider": "coros",
+                "provider_sport_type": 102,
+                "type": "TrailRun",
+            }
+        )
+
+        self.assertEqual(
+            url,
+            "https://trainingeu.coros.com/activity-detail"
+            "?labelId=479750864792223754&sportType=102",
+        )
+
+    def test_activity_url_defaults_missing_provider_to_strava(self) -> None:
+        self.assertEqual(
+            generate_heatmaps._activity_url_from_item({"id": "12345"}),
+            "https://www.strava.com/activities/12345",
+        )
 
     def test_generate_includes_repo_slug_when_available(self) -> None:
         captured = {}

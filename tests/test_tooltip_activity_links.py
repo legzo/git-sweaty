@@ -88,7 +88,7 @@ class TooltipActivityLinksTests(unittest.TestCase):
         )
         self.assertEqual(
             result,
-            [[{"text": "Weight Training: "}, {"text": "Session", "href": "https://www.strava.com/activities/101"}]],
+            [[{"text": "Session", "href": "https://www.strava.com/activities/101"}]],
         )
 
     def test_format_type_breakdown_links_lists_activity_rows_for_multiple_same_type(self) -> None:
@@ -107,11 +107,11 @@ class TooltipActivityLinksTests(unittest.TestCase):
         )
         self.assertEqual(
             result[0],
-            [{"text": "Trail Run: "}, {"text": "Trail Run 1", "href": "https://www.strava.com/activities/202"}],
+            [{"text": "Trail Run 1", "href": "https://www.strava.com/activities/202"}],
         )
         self.assertEqual(
             result[1],
-            [{"text": "Trail Run: "}, {"text": "Trail Run 2", "href": "https://www.strava.com/activities/203"}],
+            [{"text": "Trail Run 2", "href": "https://www.strava.com/activities/203"}],
         )
 
     def test_format_type_breakdown_lines_include_per_type_metrics(self) -> None:
@@ -224,6 +224,62 @@ class TooltipActivityLinksTests(unittest.TestCase):
             {"value": "https://connect.garmin.com/modern/activity/123"},
         )
         self.assertEqual(result, {"href": "https://connect.garmin.com/modern/activity/123"})
+
+    def test_parse_strava_activity_url_accepts_coros_activity_links(self) -> None:
+        value = (
+            "https://trainingeu.coros.com/activity-detail"
+            "?labelId=479750864792223754&sportType=100"
+        )
+        result = self._run_js(
+            "parseStravaActivityUrl(payload.value)",
+            {"value": value},
+        )
+        self.assertEqual(result, {"href": value})
+
+    def test_activity_rows_include_individual_metrics(self) -> None:
+        result = self._run_js(
+            (
+                "formatTypeBreakdownLinesWithLinks("
+                "payload.breakdown, payload.types, payload.links, null, payload.units)"
+            ),
+            {
+                "breakdown": {"typeCounts": {"Run": 2}},
+                "types": ["Run"],
+                "links": {
+                    "Run": [
+                        {
+                            "href": "https://www.strava.com/activities/1",
+                            "name": "Morning Run",
+                            "distance": 2060,
+                            "elevation_gain": 24,
+                            "moving_time": 3120,
+                        },
+                        {
+                            "href": "https://www.strava.com/activities/2",
+                            "name": "Evening Run",
+                            "distance": 6060,
+                            "elevation_gain": 12,
+                            "moving_time": 2700,
+                        },
+                    ]
+                },
+                "units": {"distance": "km", "elevation": "m"},
+            },
+        )
+
+        self.assertEqual(
+            result,
+            [
+                [{"text": "Morning Run", "href": "https://www.strava.com/activities/1"}],
+                [{"text": "- Distance: 2.06 km"}],
+                [{"text": "- Elevation: 24 m"}],
+                [{"text": "- Duration: 52m"}],
+                [{"text": "Evening Run", "href": "https://www.strava.com/activities/2"}],
+                [{"text": "- Distance: 6.06 km"}],
+                [{"text": "- Elevation: 12 m"}],
+                [{"text": "- Duration: 45m"}],
+            ],
+        )
 
 
 if __name__ == "__main__":

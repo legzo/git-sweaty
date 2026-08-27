@@ -159,20 +159,18 @@ def _load_activities(
             "type": activity_type,
             "subtype": str(subtype),
             "hour": hour,
+            "distance": float(item.get("distance") or 0),
+            "moving_time": float(item.get("moving_time") or 0),
+            "elevation_gain": float(item.get("elevation_gain") or 0),
         }
-        include_provider_activity_urls = include_activity_urls
-        if source == "strava" and include_strava_activity_urls:
-            include_provider_activity_urls = True
-        if source == "garmin" and include_garmin_activity_urls:
-            include_provider_activity_urls = True
-
-        if include_provider_activity_urls:
-            url = _activity_url_from_id(source, item.get("id"))
-            if url:
-                activity["url"] = url
-                activity_name = str(item.get("name") or "").strip()
-                if activity_name:
-                    activity["name"] = activity_name
+        provider = str(item.get("provider") or "strava").strip().lower()
+        activity["provider"] = provider
+        url = _activity_url_from_item(item)
+        if url:
+            activity["url"] = url
+        activity_name = str(item.get("name") or "").strip()
+        if activity_name:
+            activity["name"] = activity_name
         activities.append(activity)
     return activities
 
@@ -274,6 +272,33 @@ def _activity_url_from_id(source: str, activity_id: object) -> Optional[str]:
     if source == "garmin":
         return f"https://connect.garmin.com/modern/activity/{encoded}"
     return None
+
+
+def _activity_url_from_item(item: Dict) -> Optional[str]:
+    activity_id = str(item.get("id") or "").strip()
+    if not activity_id or "/" in activity_id or "\\" in activity_id:
+        return None
+    encoded_id = urllib.parse.quote(activity_id, safe="")
+    provider = str(item.get("provider") or "strava").strip().lower()
+    if provider == "garmin":
+        return f"https://connect.garmin.com/modern/activity/{encoded_id}"
+    if provider != "coros":
+        return f"https://www.strava.com/activities/{encoded_id}"
+
+    sport_type = item.get("provider_sport_type")
+    if sport_type in (None, ""):
+        sport_type = {
+            "Run": 100,
+            "Ride": 200,
+        }.get(str(item.get("type") or ""))
+    try:
+        encoded_sport_type = str(int(sport_type))
+    except (TypeError, ValueError):
+        return None
+    return (
+        "https://trainingeu.coros.com/activity-detail"
+        f"?labelId={encoded_id}&sportType={encoded_sport_type}"
+    )
 
 
 def _strava_profile_url_from_config(config: Dict) -> Optional[str]:

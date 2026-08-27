@@ -202,6 +202,7 @@ def _normalize_activity(activity: Dict[str, Any]) -> Dict[str, Any]:
         "start_date": started_at.isoformat(),
         "type": activity_type,
         "sport_type": activity_type,
+        "provider_sport_type": sport_type_id,
         "distance": _safe_float(activity.get("distance") or activity.get("totalDistance")),
         "moving_time": _safe_float(
             activity.get("duration") or activity.get("totalTime") or activity.get("elapsedTime")
