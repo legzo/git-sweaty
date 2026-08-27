@@ -28,7 +28,7 @@ sync:
   # lookback_years: 5        # ignored when start_date is set
   # preserve_history_before_start_date: false
   # Keep normalized activities before start_date when changing provider.
-  recent_days: 7
+  recent_days: 35
   resume_backfill: true
   per_page: 200
   prune_deleted: false
