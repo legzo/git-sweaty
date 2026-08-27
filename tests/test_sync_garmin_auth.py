@@ -54,6 +54,56 @@ class SyncGarminAuthTests(unittest.TestCase):
             ((), {"tokenstore": sync_garmin.TOKEN_STORE_PATH}),
         )
 
+    def test_invalid_token_store_falls_back_to_credentials(self) -> None:
+        instances = []
+
+        class FakeGarmin:
+            def __init__(self, email=None, password=None):
+                self.email = email
+                self.password = password
+                self.login_calls = []
+                instances.append(self)
+
+            def login(self, *args, **kwargs):
+                self.login_calls.append((args, kwargs))
+                return None, None
+
+        fake_module = SimpleNamespace(Garmin=FakeGarmin)
+        config = {
+            "garmin": {
+                "token_store_b64": "-",
+                "email": "runner@example.com",
+                "password": "secret",
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            old_cwd = os.getcwd()
+            os.chdir(tmpdir)
+            try:
+                with mock.patch.dict(sys.modules, {"garminconnect": fake_module}):
+                    client = sync_garmin._load_garmin_client(config)
+            finally:
+                os.chdir(old_cwd)
+
+        self.assertIs(client, instances[0])
+        self.assertEqual(client.email, "runner@example.com")
+        self.assertEqual(
+            client.login_calls[0],
+            ((), {"tokenstore": sync_garmin.TOKEN_STORE_PATH}),
+        )
+
+    def test_invalid_token_store_without_credentials_has_actionable_error(self) -> None:
+        fake_module = SimpleNamespace(Garmin=object)
+        config = {"garmin": {"token_store_b64": "-"}}
+
+        with mock.patch.dict(sys.modules, {"garminconnect": fake_module}):
+            with self.assertRaisesRegex(
+                RuntimeError,
+                "GARMIN_EMAIL and GARMIN_PASSWORD",
+            ):
+                sync_garmin._load_garmin_client(config)
+
     def test_load_garmin_client_writes_native_token_store_secret(self) -> None:
         instances = []
 

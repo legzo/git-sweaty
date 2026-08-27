@@ -408,7 +408,20 @@ def _load_garmin_client(config: Dict[str, Any]) -> Any:
     strict_token_mode = _strict_token_only(config)
 
     token_store: Optional[str] = None
-    token_bytes = _load_token_store_bytes(config)
+    try:
+        token_bytes = _load_token_store_bytes(config)
+    except ValueError as exc:
+        if strict_token_mode or not (email and password):
+            raise RuntimeError(
+                "Configured Garmin token store is not valid base64. Re-run setup to replace "
+                "GARMIN_TOKENS_B64, or configure GARMIN_EMAIL and GARMIN_PASSWORD to allow "
+                "automatic recovery."
+            ) from exc
+        print(
+            "Warning: configured Garmin token store is invalid; falling back to Garmin "
+            "email/password so it can be regenerated."
+        )
+        token_bytes = None
     if token_bytes:
         token_store = _write_token_store(token_bytes)
     elif strict_token_mode:

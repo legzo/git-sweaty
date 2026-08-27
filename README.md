@@ -6,6 +6,8 @@
   </sub>
 </p>
 
+****Note:** As of July 1, 2026, Strava [no longer allows](https://communityhub.strava.com/insider-journal-9/an-update-to-our-developer-program-13428) API access with free-tier accounts. Strava subscribers can continue using git-sweaty; free users can optionally re-run setup and switch to Garmin as a data source.**
+
 # Workout --> Interactive Dashboard
 
 Turn your Strava and Garmin activities into GitHub-style contribution graphs. Automatically generate a free, interactive dashboard updated daily on GitHub Pages.  
@@ -173,6 +175,7 @@ Choose one auth path:
 Optional but recommended for automatic Garmin token rotation:
 
 - Add `GARMIN_SECRET_UPDATE_TOKEN` (a GitHub token with repo write access to this fork). Setup attempts to configure this automatically from your current `gh` auth session.
+- Keep `GARMIN_EMAIL` and `GARMIN_PASSWORD` configured as a recovery path. If the saved token archive is malformed or can no longer be reused, the scheduled workflow can sign in, regenerate it, and rotate `GARMIN_TOKENS_B64` automatically.
 
 ### 3) Run the first sync and deploy
 

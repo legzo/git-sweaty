@@ -313,7 +313,7 @@ jobs:
             exit 0
           fi
 
-          if printf '%s' "${new_refresh_token}" | GH_TOKEN="${STRAVA_SECRET_UPDATE_TOKEN}" gh secret set STRAVA_REFRESH_TOKEN --repo "${GITHUB_REPOSITORY}" --body -; then
+          if printf '%s' "${new_refresh_token}" | GH_TOKEN="${STRAVA_SECRET_UPDATE_TOKEN}" gh secret set STRAVA_REFRESH_TOKEN --repo "${GITHUB_REPOSITORY}"; then
             echo "Updated STRAVA_REFRESH_TOKEN from rotated Strava token."
           else
             echo "::warning::Failed to update STRAVA_REFRESH_TOKEN automatically. Update it manually."
@@ -378,7 +378,7 @@ jobs:
             exit 0
           fi
 
-          if printf '%s' "${new_token_store}" | GH_TOKEN="${GARMIN_SECRET_UPDATE_TOKEN}" gh secret set GARMIN_TOKENS_B64 --repo "${GITHUB_REPOSITORY}" --body -; then
+          if printf '%s' "${new_token_store}" | GH_TOKEN="${GARMIN_SECRET_UPDATE_TOKEN}" gh secret set GARMIN_TOKENS_B64 --repo "${GITHUB_REPOSITORY}"; then
             echo "Updated GARMIN_TOKENS_B64 from refreshed Garmin token store."
           else
             echo "::warning::Failed to update GARMIN_TOKENS_B64 automatically. Update it manually."
