@@ -1,5 +1,5 @@
 # Base configuration. Put secrets in config.local.yaml (ignored by git).
-source: "strava"  # "strava", "garmin", or "coros"
+source: "coros"  # "strava", "garmin", or "coros"
 
 strava:
   client_id: ""
@@ -31,6 +31,8 @@ sync:
   resume_backfill: true
   per_page: 200
   prune_deleted: false
+  start_date: "2026-07-01"
+  preserve_history_before_start_date: true
 
 rate_limits:
   overall_15_min: 200
