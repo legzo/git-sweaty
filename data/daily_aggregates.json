@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T15:16:43.972356+00:00",
+  "generated_at": "2026-09-03T07:53:20.291857+00:00",
   "years": {
     "2012": {
       "Ride": {
@@ -17395,12 +17395,62 @@
         },
         "2026-08-27": {
           "activity_ids": [
-            "479913263413362691"
+            "479913263413362691",
+            "479922081784430993",
+            "479927548743024743"
+          ],
+          "count": 3,
+          "distance": 39500.09,
+          "elevation_gain": 153.0,
+          "moving_time": 23007.0
+        },
+        "2026-08-28": {
+          "activity_ids": [
+            "479946738386370762"
           ],
           "count": 1,
-          "distance": 12814.18,
-          "elevation_gain": 89.0,
-          "moving_time": 2336.0
+          "distance": 34246.33,
+          "elevation_gain": 165.0,
+          "moving_time": 4622.0
+        },
+        "2026-08-29": {
+          "activity_ids": [
+            "479969200260022574"
+          ],
+          "count": 1,
+          "distance": 50204.84,
+          "elevation_gain": 284.0,
+          "moving_time": 6837.0
+        },
+        "2026-09-01": {
+          "activity_ids": [
+            "480028392962425037",
+            "480032847917252908",
+            "480038323732119751"
+          ],
+          "count": 3,
+          "distance": 46103.58,
+          "elevation_gain": 262.0,
+          "moving_time": 7604.0
+        },
+        "2026-09-02": {
+          "activity_ids": [
+            "480052087760126051",
+            "480060953648464174"
+          ],
+          "count": 2,
+          "distance": 25398.25,
+          "elevation_gain": 144.0,
+          "moving_time": 4516.0
+        },
+        "2026-09-03": {
+          "activity_ids": [
+            "480075025571938410"
+          ],
+          "count": 1,
+          "distance": 12525.27,
+          "elevation_gain": 98.0,
+          "moving_time": 2317.0
         }
       },
       "RockClimbing": {
@@ -18323,6 +18373,33 @@
           "distance": 9134.12,
           "elevation_gain": 33.0,
           "moving_time": 3152.0
+        },
+        "2026-08-28": {
+          "activity_ids": [
+            "479935455238848818"
+          ],
+          "count": 1,
+          "distance": 8133.96,
+          "elevation_gain": 28.0,
+          "moving_time": 2870.0
+        },
+        "2026-08-31": {
+          "activity_ids": [
+            "480005746673615351"
+          ],
+          "count": 1,
+          "distance": 8490.98,
+          "elevation_gain": 7.0,
+          "moving_time": 2793.0
+        },
+        "2026-09-02": {
+          "activity_ids": [
+            "480055836998140205"
+          ],
+          "count": 1,
+          "distance": 9360.73,
+          "elevation_gain": 26.0,
+          "moving_time": 3248.0
         }
       },
       "Swim": {
