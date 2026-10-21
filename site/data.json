@@ -38196,6 +38196,383 @@
       "type": "Ride",
       "url": "https://trainingeu.coros.com/activity-detail?labelId=480724553476112985&sportType=200",
       "year": 2026
+    },
+    {
+      "date": "2026-10-01",
+      "distance": 12520.71,
+      "elevation_gain": 54.0,
+      "hour": 16,
+      "moving_time": 2479.0,
+      "name": "Can\u00e9jan V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480733938514428109&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-02",
+      "distance": 11109.5,
+      "elevation_gain": 7.0,
+      "hour": 6,
+      "moving_time": 3837.0,
+      "name": "VMA 8 \u00d7 400 m",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480748183041900744&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-03",
+      "distance": 8119.01,
+      "elevation_gain": 33.0,
+      "hour": 9,
+      "moving_time": 2863.0,
+      "name": "Bordeaux Course",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480773639044628681&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-04",
+      "distance": 52542.75,
+      "elevation_gain": 690.0,
+      "hour": 13,
+      "moving_time": 7161.0,
+      "name": "Fargues-Saint-Hilaire V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480800978124177412&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-05",
+      "distance": 9507.82,
+      "elevation_gain": 23.0,
+      "hour": 6,
+      "moving_time": 3284.0,
+      "name": "Endurance fondamentale 8 km",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480817844995522961&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-06",
+      "distance": 12551.8,
+      "elevation_gain": 94.0,
+      "hour": 6,
+      "moving_time": 2454.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480850182609600512&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-06",
+      "distance": 12609.87,
+      "elevation_gain": 39.0,
+      "hour": 16,
+      "moving_time": 2327.0,
+      "name": "Can\u00e9jan V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480850182609600513&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-07",
+      "distance": 12818.41,
+      "elevation_gain": 92.0,
+      "hour": 6,
+      "moving_time": 2387.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480863838191780341&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-07",
+      "distance": 11066.0,
+      "elevation_gain": 28.0,
+      "hour": 10,
+      "moving_time": 3745.0,
+      "name": "Seuil contr\u00f4l\u00e9 3 \u00d7 8 min",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480867797883191601&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-07",
+      "distance": 12540.51,
+      "elevation_gain": 35.0,
+      "hour": 16,
+      "moving_time": 2243.0,
+      "name": "Can\u00e9jan V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480873098141270018&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-08",
+      "distance": 12810.31,
+      "elevation_gain": 100.0,
+      "hour": 6,
+      "moving_time": 2459.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480886835057295460&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-08",
+      "distance": 12528.05,
+      "elevation_gain": 52.0,
+      "hour": 16,
+      "moving_time": 2386.0,
+      "name": "Can\u00e9jan V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480896159966068840&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-09",
+      "distance": 11118.61,
+      "elevation_gain": 9.0,
+      "hour": 6,
+      "moving_time": 3766.0,
+      "name": "VMA 8 \u00d7 400 m \u2014 r\u00e9gularit\u00e9",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480911872298615084&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-10",
+      "distance": 9100.06,
+      "elevation_gain": 14.0,
+      "hour": 15,
+      "moving_time": 3238.0,
+      "name": "Bordeaux Course",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480941795872637231&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-11",
+      "distance": 40260.22,
+      "elevation_gain": 184.0,
+      "hour": 14,
+      "moving_time": 5255.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480965235656654850&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-12",
+      "distance": 9488.54,
+      "elevation_gain": 29.0,
+      "hour": 10,
+      "moving_time": 3145.0,
+      "name": "Endurance fondamentale 8 km",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=480983571411009737&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-13",
+      "distance": 11612.66,
+      "elevation_gain": 77.0,
+      "hour": 6,
+      "moving_time": 2262.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481003296851525834&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-13",
+      "distance": 13148.9,
+      "elevation_gain": 40.0,
+      "hour": 15,
+      "moving_time": 2529.0,
+      "name": "Can\u00e9jan V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481011888130392070&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-14",
+      "distance": 30706.61,
+      "elevation_gain": 70.0,
+      "hour": 15,
+      "moving_time": 4214.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481035211681857738&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-17",
+      "distance": 35107.11,
+      "elevation_gain": 111.0,
+      "hour": 9,
+      "moving_time": 4385.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481098871687119150&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-17",
+      "distance": 5163.89,
+      "elevation_gain": 23.0,
+      "hour": 14,
+      "moving_time": 4907.0,
+      "name": "Bordeaux Course",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481104299183603712&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-18",
+      "distance": 35168.67,
+      "elevation_gain": 107.0,
+      "hour": 15,
+      "moving_time": 4636.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481127119953363352&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-19",
+      "distance": 9150.01,
+      "elevation_gain": 41.0,
+      "hour": 10,
+      "moving_time": 3198.0,
+      "name": "Bordeaux Course",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481146558975344744&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-19",
+      "distance": 31047.49,
+      "elevation_gain": 58.0,
+      "hour": 16,
+      "moving_time": 4199.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481151927416029486&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-20",
+      "distance": 12794.29,
+      "elevation_gain": 99.0,
+      "hour": 6,
+      "moving_time": 2407.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481165656547426413&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-20",
+      "distance": 9393.34,
+      "elevation_gain": 25.0,
+      "hour": 9,
+      "moving_time": 3227.0,
+      "name": "Can\u00e9jan Course",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481168801537228999&sportType=100",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-20",
+      "distance": 12535.09,
+      "elevation_gain": 34.0,
+      "hour": 16,
+      "moving_time": 2095.0,
+      "name": "Can\u00e9jan V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481174979310813386&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-21",
+      "distance": 14542.96,
+      "elevation_gain": 90.0,
+      "hour": 6,
+      "moving_time": 2875.0,
+      "name": "Bordeaux V\u00e9lo de route",
+      "provider": "coros",
+      "subtype": "Ride",
+      "type": "Ride",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481188145803592181&sportType=200",
+      "year": 2026
+    },
+    {
+      "date": "2026-10-21",
+      "distance": 9397.65,
+      "elevation_gain": 26.0,
+      "hour": 10,
+      "moving_time": 3207.0,
+      "name": "Can\u00e9jan Course",
+      "provider": "coros",
+      "subtype": "Run",
+      "type": "Run",
+      "url": "https://trainingeu.coros.com/activity-detail?labelId=481192265212002707&sportType=100",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -55817,12 +56194,126 @@
         },
         "2026-10-01": {
           "activity_ids": [
-            "480724553476112985"
+            "480724553476112985",
+            "480733938514428109"
+          ],
+          "count": 2,
+          "distance": 25291.68,
+          "elevation_gain": 146.0,
+          "moving_time": 5116.0
+        },
+        "2026-10-04": {
+          "activity_ids": [
+            "480800978124177412"
           ],
           "count": 1,
-          "distance": 12770.97,
-          "elevation_gain": 92.0,
-          "moving_time": 2637.0
+          "distance": 52542.75,
+          "elevation_gain": 690.0,
+          "moving_time": 7161.0
+        },
+        "2026-10-06": {
+          "activity_ids": [
+            "480850182609600512",
+            "480850182609600513"
+          ],
+          "count": 2,
+          "distance": 25161.67,
+          "elevation_gain": 133.0,
+          "moving_time": 4781.0
+        },
+        "2026-10-07": {
+          "activity_ids": [
+            "480863838191780341",
+            "480873098141270018"
+          ],
+          "count": 2,
+          "distance": 25358.92,
+          "elevation_gain": 127.0,
+          "moving_time": 4630.0
+        },
+        "2026-10-08": {
+          "activity_ids": [
+            "480886835057295460",
+            "480896159966068840"
+          ],
+          "count": 2,
+          "distance": 25338.36,
+          "elevation_gain": 152.0,
+          "moving_time": 4845.0
+        },
+        "2026-10-11": {
+          "activity_ids": [
+            "480965235656654850"
+          ],
+          "count": 1,
+          "distance": 40260.22,
+          "elevation_gain": 184.0,
+          "moving_time": 5255.0
+        },
+        "2026-10-13": {
+          "activity_ids": [
+            "481003296851525834",
+            "481011888130392070"
+          ],
+          "count": 2,
+          "distance": 24761.559999999998,
+          "elevation_gain": 117.0,
+          "moving_time": 4791.0
+        },
+        "2026-10-14": {
+          "activity_ids": [
+            "481035211681857738"
+          ],
+          "count": 1,
+          "distance": 30706.61,
+          "elevation_gain": 70.0,
+          "moving_time": 4214.0
+        },
+        "2026-10-17": {
+          "activity_ids": [
+            "481098871687119150"
+          ],
+          "count": 1,
+          "distance": 35107.11,
+          "elevation_gain": 111.0,
+          "moving_time": 4385.0
+        },
+        "2026-10-18": {
+          "activity_ids": [
+            "481127119953363352"
+          ],
+          "count": 1,
+          "distance": 35168.67,
+          "elevation_gain": 107.0,
+          "moving_time": 4636.0
+        },
+        "2026-10-19": {
+          "activity_ids": [
+            "481151927416029486"
+          ],
+          "count": 1,
+          "distance": 31047.49,
+          "elevation_gain": 58.0,
+          "moving_time": 4199.0
+        },
+        "2026-10-20": {
+          "activity_ids": [
+            "481165656547426413",
+            "481174979310813386"
+          ],
+          "count": 2,
+          "distance": 25329.38,
+          "elevation_gain": 133.0,
+          "moving_time": 4502.0
+        },
+        "2026-10-21": {
+          "activity_ids": [
+            "481188145803592181"
+          ],
+          "count": 1,
+          "distance": 14542.96,
+          "elevation_gain": 90.0,
+          "moving_time": 2875.0
         }
       },
       "RockClimbing": {
@@ -56880,6 +57371,105 @@
           "distance": 9397.35,
           "elevation_gain": 27.0,
           "moving_time": 3231.0
+        },
+        "2026-10-02": {
+          "activity_ids": [
+            "480748183041900744"
+          ],
+          "count": 1,
+          "distance": 11109.5,
+          "elevation_gain": 7.0,
+          "moving_time": 3837.0
+        },
+        "2026-10-03": {
+          "activity_ids": [
+            "480773639044628681"
+          ],
+          "count": 1,
+          "distance": 8119.01,
+          "elevation_gain": 33.0,
+          "moving_time": 2863.0
+        },
+        "2026-10-05": {
+          "activity_ids": [
+            "480817844995522961"
+          ],
+          "count": 1,
+          "distance": 9507.82,
+          "elevation_gain": 23.0,
+          "moving_time": 3284.0
+        },
+        "2026-10-07": {
+          "activity_ids": [
+            "480867797883191601"
+          ],
+          "count": 1,
+          "distance": 11066.0,
+          "elevation_gain": 28.0,
+          "moving_time": 3745.0
+        },
+        "2026-10-09": {
+          "activity_ids": [
+            "480911872298615084"
+          ],
+          "count": 1,
+          "distance": 11118.61,
+          "elevation_gain": 9.0,
+          "moving_time": 3766.0
+        },
+        "2026-10-10": {
+          "activity_ids": [
+            "480941795872637231"
+          ],
+          "count": 1,
+          "distance": 9100.06,
+          "elevation_gain": 14.0,
+          "moving_time": 3238.0
+        },
+        "2026-10-12": {
+          "activity_ids": [
+            "480983571411009737"
+          ],
+          "count": 1,
+          "distance": 9488.54,
+          "elevation_gain": 29.0,
+          "moving_time": 3145.0
+        },
+        "2026-10-17": {
+          "activity_ids": [
+            "481104299183603712"
+          ],
+          "count": 1,
+          "distance": 5163.89,
+          "elevation_gain": 23.0,
+          "moving_time": 4907.0
+        },
+        "2026-10-19": {
+          "activity_ids": [
+            "481146558975344744"
+          ],
+          "count": 1,
+          "distance": 9150.01,
+          "elevation_gain": 41.0,
+          "moving_time": 3198.0
+        },
+        "2026-10-20": {
+          "activity_ids": [
+            "481168801537228999"
+          ],
+          "count": 1,
+          "distance": 9393.34,
+          "elevation_gain": 25.0,
+          "moving_time": 3227.0
+        },
+        "2026-10-21": {
+          "activity_ids": [
+            "481192265212002707"
+          ],
+          "count": 1,
+          "distance": 9397.65,
+          "elevation_gain": 26.0,
+          "moving_time": 3207.0
         }
       },
       "Swim": {
@@ -57040,7 +57630,7 @@
       }
     }
   },
-  "generated_at": "2026-10-01T15:04:37.297811+00:00",
+  "generated_at": "2026-10-21T14:54:17.902420+00:00",
   "other_bucket": "OtherSports",
   "repo": "legzo/git-sweaty",
   "source": "coros",
